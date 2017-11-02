@@ -14,6 +14,15 @@ BOT_NAME = 'xpc'
 SPIDER_MODULES = ['xpc.spiders']
 NEWSPIDER_MODULE = 'xpc.spiders'
 
+MYSQL_HOST = 'localhost'
+MYSQL_PORT = 3306
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = ''
+MYSQL_DB = 'xpc'
+MYSQL_TABLE = None
+MYSQL_UPSERT = True
+MYSQL_RETRIES = 1
+MYSQL_CLOSE_ON_ERROR = True
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML,"\
