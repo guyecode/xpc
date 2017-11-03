@@ -11,9 +11,9 @@ class PostsSpider(scrapy.Spider):
     name = 'posts'
     allowed_domains = ['www.xinpianchang.com']
     # 热门
-    start_urls = ['http://www.xinpianchang.com/channel/index/sort-like']
+    # start_urls = ['http://www.xinpianchang.com/channel/index/sort-like']
     # 最新
-    # start_urls = ['http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0']
+    start_urls = ['http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0']
     custom_settings = {
         'ITEM_PIPELINES': {
             'xpc.pipelines.PostPipeline': 300,
@@ -22,16 +22,21 @@ class PostsSpider(scrapy.Spider):
             'xpc.pipelines.CopyrightItemPipeline': 303,
         }
     }
+
     def parse(self, response):
-        self.logger.info('%s %s %s' % (response.status, len(response.text), response.url)
+        self.logger.info('%s %s %s ' % (response.status, len(response.text), response.url))
         post_url = 'http://www.xinpianchang.com/a%s?from=channel'
-        post_list = response.xpath('//ul[@class="video-list"]/li/@data-articleid').extract()
+        post_list = response.xpath('//ul[@class="video-list"]/li')
+        # post_list = response.xpath('//ul[@class="video-list"]/li/@data-articleid').extract()
         for post in post_list:
+            post_id = post.xpath('./@data-articleid').extract_first()
             request = Request(post_url % post, callback=self.parse_post)
             request.meta['pid'] = post
+            request.meta['thumbnail'] = post.xpath('./a/img/@src').extract_first()
             yield request
 
-        next_page = response.xpath('//div[@class="page"]/span[@class="current"]/following-sibling::a[1]').extract_first()
+        next_page = response.xpath('//div[@class="page"]/span[@class="current"]/following-sibling::a[1]/@href').extract_first()
+        self.logger.info('next_page: %s' % next_page)
         if next_page:
             yield response.follow(next_page, callback=self.parse)
 

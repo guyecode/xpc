@@ -4,7 +4,8 @@ def convert_int(s):
 
 def strip(s):
     if not s:
-        return ''
-    if not isinstance(s, str):
-        return str(s)
-    return s.strip().replace('\t', '').replace('\n', '').replace('\r', '')
+        return u''
+    if isinstance(s, str) or isinstance(s, unicode):
+        return s.strip().replace('\t', '').replace('\n', '').replace('\r', '')
+    return unicode(s)
+    

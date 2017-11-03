@@ -5,6 +5,7 @@ USE `xpc`;
 CREATE TABLE IF NOT EXISTS `posts` (
 	`pid` BIGINT UNSIGNED NOT NULL DEFAULT 0 COMMENT '作品表主键',
 	`title` VARCHAR(256) NOT NULL COMMENT '作品标题',
+	`thumbnail` VARCHAR(512) COMMENT '视频缩略图',
 	`preview` VARCHAR(512) COMMENT '视频预览图',
 	`video` VARCHAR(512) COMMENT '视频链接',
 	`video_format` VARCHAR(32) COMMENT '视频格式：4K 等',

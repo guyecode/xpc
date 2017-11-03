@@ -15,6 +15,7 @@ class PostItem(scrapy.Item):
     # name = Field()
     pid = Field()
     title = Field()
+    thumbnail = Field()
     preview = Field()
     video = Field()
     video_format = Field()
