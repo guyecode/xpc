@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+import debug_toolbar
+from web.views import post, composer
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', post.show_list, name='index'),
+    url(r'^post/list/', post.show_list),
+    url(r'^a(?P<pid>\d+)/', post.post_detail),
+    url(r'^composer/(?P<cid>\d+)/', composer.homepage),
 ]
+
+
+urlpatterns += [url(r'^__debug__/', include(debug_toolbar.urls)),]

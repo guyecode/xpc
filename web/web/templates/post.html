@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>{{post.title}}
+<p>{{post.preview|safe}}
+<p>{{post.video_format}}
+<p>{{post.video}}
+<p>{{post.category}}
+<p>{{post.created_at}}
+<p>{{post.description}}
+<p>{{post.play_counts}}
+<p>{{post.like_counts}}
+
+{% endblock %}
