@@ -30,9 +30,9 @@ class PostsSpider(scrapy.Spider):
         # post_list = response.xpath('//ul[@class="video-list"]/li/@data-articleid').extract()
         for post in post_list:
             post_id = post.xpath('./@data-articleid').extract_first()
-            request = Request(post_url % post, callback=self.parse_post)
-            request.meta['pid'] = post
-            request.meta['thumbnail'] = post.xpath('./a/img/@src').extract_first()
+            request = Request(post_url % post_id, callback=self.parse_post)
+            request.meta['pid'] = post_id
+            request.meta['thumbnail'] = post.xpath('./a/img/@_src').extract_first()
             yield request
 
         next_page = response.xpath('//div[@class="page"]/span[@class="current"]/following-sibling::a[1]/@href').extract_first()
@@ -45,7 +45,8 @@ class PostsSpider(scrapy.Spider):
         post = PostItem()
         post['pid'] = response.meta['pid']
         post['title'] = response.xpath('//div[@class="title-wrap"]/h3/text()').extract_first()
-        post['preview'] = strip(response.xpath('//img[@class="vjs-poster"]/@src').extract_first())
+        post['thumbnail'] = response.meta['thumbnail']
+        post['preview'] = strip(response.xpath('//div[@class="filmplay"]//img').extract_first())
         video = response.xpath('//video[@id="xpc_video"]/@src') or response.xpath('//div[@class="td-player"]//video/@src')
         post['video'] = video.extract_first()
         post['video_format'] = strip(response.xpath('//span[contains(@class, "video-format")]/text()').extract_first())
