@@ -22,6 +22,9 @@ from web.views import post, composer
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', post.show_list, name='index'),
+    url(r'^forget_pwd/', composer.forget_pwd),
+    url(r'^api/v1/user/check/send', composer.send_sms_code),
+    url(r'^api/v1/mobile/check/find', composer.check_code),
     url(r'^post/list/', post.show_list),
     url(r'^a(?P<pid>\d+)/', post.post_detail),
     url(r'^composer/(?P<cid>\d+)/', composer.homepage),
