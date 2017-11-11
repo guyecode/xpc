@@ -20,4 +20,3 @@ def send_sms(mobile, code):
 
 def gen_code():
     return str(random.randint(100000, 999999))
-

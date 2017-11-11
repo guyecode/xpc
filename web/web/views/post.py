@@ -7,6 +7,7 @@ from django.core.paginator import Paginator
 
 POSTS_PER_PAGE = 32
 
+
 def show_list(request, page=1):
     if request.GET.get('err'):
         1 / 0
@@ -14,6 +15,7 @@ def show_list(request, page=1):
     paginator = Paginator(post_list, POSTS_PER_PAGE)
     posts = paginator.page(page)
     return render(request, 'post_list.html', {'posts': posts})
+
 
 def post_detail(request, pid):
     post = Post.objects.get(pid=pid)
