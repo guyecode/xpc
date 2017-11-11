@@ -1,10 +1,8 @@
 # coding:utf-8
 from web.models.post import Post
 
-from django.conf import settings
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
+from django.core.paginator import Paginator
 
 
 POSTS_PER_PAGE = 32
