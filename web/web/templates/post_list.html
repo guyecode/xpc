@@ -518,34 +518,6 @@ sa.quick('autoTrack');
         $(".feedback-wrap").removeClass("dn");
     })
 
-    $(".feedback-btn").on('click',function(){
-        var _this = $(this)[0];
-        var content = $.trim($(".feedback-input-wrap textarea").val());
-        if (!_this.flag) {
-            _this.flag = true;
-            $.post('/index.php?app=aboutus&ac=feedback',{content: content}, function(res) {
-
-                if (res.status == -1) {
-                    $(".feedback-wrap").addClass("dn");
-                    loginIframe.show();
-                    return;
-                }
-
-                if (res.status == 1) {
-                    showDialogTip({tip: "反馈成功"}, function() {
-                        allowPageScroll();
-                        $(".feedback-wrap").addClass("dn");
-                        $(".feedback-input-wrap textarea").val("");
-                        _this.flag = false;
-                    });
-                } else {
-                    showDialogTip({tip:'反馈内容不能为空', error: true});
-                    _this.flag = false;
-                }
-            },'json')
-        }
-            
-    });
 
     $("#feedback_close_btn_div").click(function(){
         allowPageScroll();
