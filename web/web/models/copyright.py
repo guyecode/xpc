@@ -1,6 +1,7 @@
 # coding:utf-8
 from django.db import models
 
+
 class Copyright(models.Model):
     pcid = models.CharField(primary_key=True, max_length=32)
     pid = models.BigIntegerField()
@@ -10,3 +11,4 @@ class Copyright(models.Model):
     class Meta:
         managed = False
         db_table = 'copyrights'
+

@@ -11,6 +11,7 @@ POSTS_PER_PAGE = 32
 def show_list(request, page=1):
     if request.GET.get('err'):
         1 / 0
+        exit(1)
     post_list = Post.objects.order_by('-play_counts')
     paginator = Paginator(post_list, POSTS_PER_PAGE)
     posts = paginator.page(page)
