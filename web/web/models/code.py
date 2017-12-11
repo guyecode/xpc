@@ -1,5 +1,6 @@
 # coding:utf-8
 from django.db import models
+from django.contrib import admin
 
 
 class Code(models.Model):
@@ -12,3 +13,9 @@ class Code(models.Model):
     class Meta:
         managed = False
         db_table = 'codes'
+
+class CodeAdmin(admin.ModelAdmin):
+    list_display = ('code_id', 'phone', 'code', 'created_at', 'ip')
+    empty_value_display = '-'
+
+admin.site.register(Code, CodeAdmin)

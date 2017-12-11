@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.db import models
-
+from django.contrib import admin
 
 class Post(models.Model):
     pid = models.BigIntegerField(primary_key=True)
@@ -22,3 +22,8 @@ class Post(models.Model):
     def __unicode__(self):
         return self.title
  
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('pid', 'title', 'video_format', 'category', 'created_at', 'play_counts', 'like_counts')
+    empty_value_display = '-'
+
+admin.site.register(Post, PostAdmin)

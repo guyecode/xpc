@@ -1,6 +1,6 @@
 # coding:utf-8
 from django.db import models
-
+from django.contrib import admin
 
 class Composer(models.Model):
     cid = models.BigIntegerField(primary_key=True)
@@ -19,3 +19,10 @@ class Composer(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class ComposerAdmin(admin.ModelAdmin):
+    list_display = ('cid', 'name', 'verified', 'intro', 'fans_counts', 'like_counts', 'follow_counts')
+    empty_value_display = '-'
+
+admin.site.register(Composer, ComposerAdmin)
