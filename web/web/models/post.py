@@ -8,6 +8,7 @@ class Post(models.Model):
     preview = models.CharField(max_length=512, blank=True, null=True)
     video = models.CharField(max_length=512, blank=True, null=True)
     video_format = models.CharField(max_length=512, blank=True, null=True)
+    duration = models.IntegerField()
     category = models.CharField(max_length=512)
     created_at = models.CharField(max_length=128)
     description = models.TextField(blank=True, null=True)
@@ -16,7 +17,7 @@ class Post(models.Model):
     thumbnail = models.CharField(max_length=512, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'posts'
 
     def __unicode__(self):

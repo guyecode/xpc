@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 	`preview` VARCHAR(512) COMMENT '视频预览图',
 	`video` VARCHAR(512) COMMENT '视频链接',
 	`video_format` VARCHAR(32) COMMENT '视频格式：4K 等',
+	`duration` INT(8) NOT NULL DEFAULT 0 COMMENT '播放时长';
 	`category` VARCHAR(512) NOT NULL DEFAULT '' COMMENT '作品分类',
 	`created_at` VARCHAR(128) NOT NULL DEFAULT '' COMMENT '发表时间',
 	`description` text COMMENT '作品描述',
@@ -27,6 +28,9 @@ CREATE TABLE IF NOT EXISTS `composers` (
 	`like_counts` INT(8) NOT NULL DEFAULT 0 COMMENT '被点赞次数',
 	`fans_counts` INT(8) NOT NULL DEFAULT 0 COMMENT '被关注数量',
 	`follow_counts` INT(8) NOT NULL DEFAULT 0 COMMENT '关注数量',
+	`location` VARCHAR(32) COMMENT '所在地点',
+	`career` VARCHAR(32) COMMENT '职业',
+
 	PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '用户表';
 

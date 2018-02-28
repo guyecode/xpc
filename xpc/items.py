@@ -19,6 +19,7 @@ class PostItem(scrapy.Item):
     preview = Field()
     video = Field()
     video_format = Field()
+    duration = Field()
     category = Field()
     created_at = Field()
     play_counts = Field()
@@ -36,6 +37,8 @@ class ComposerItem(scrapy.Item):
     like_counts = Field()
     fans_counts = Field()
     follow_counts = Field()
+    location = Field()
+    career = Field()
 
 class CommentItem(scrapy.Item):
     commentid = Field()

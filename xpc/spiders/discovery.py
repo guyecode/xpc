@@ -16,9 +16,9 @@ class PostsSpider(scrapy.Spider):
     name = 'posts'
     allowed_domains = ['www.xinpianchang.com']
     # 热门
-    # start_urls = ['http://www.xinpianchang.com/channel/index/sort-like']
+    start_urls = ['http://www.xinpianchang.com/channel/index/sort-like']
     # 最新
-    start_urls = ['http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0']
+    # start_urls = ['http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0']
     custom_settings = {
         'ITEM_PIPELINES': {
             'xpc.pipelines.PostPipeline': 300,
@@ -38,9 +38,10 @@ class PostsSpider(scrapy.Spider):
             request = Request(post_url % post_id, callback=self.parse_post)
             request.meta['pid'] = post_id
             request.meta['thumbnail'] = post.xpath('./a/img/@_src').extract_first()
+            request.meta['duration'] = post.xpath('.//span[contains(@class, "duration")]/text()').get()
             yield request
 
-        next_page = response.xpath('//div[@class="page"]/span[@class="current"]/following-sibling::a[1]/@href').extract_first()
+        next_page = response.xpath('//div[@class="page"]/a[last()]/@href').get()
         self.logger.info('next_page: %s' % next_page)
         if next_page:
             yield response.follow(next_page, callback=self.parse)
@@ -55,6 +56,11 @@ class PostsSpider(scrapy.Spider):
         video = response.xpath('//video[@id="xpc_video"]/@src') or response.xpath('//div[@class="td-player"]//video/@src')
         post['video'] = video.extract_first()
         post['video_format'] = strip(response.xpath('//span[contains(@class, "video-format")]/text()').extract_first())
+        duration = response.meta['duration']
+        if duration:
+            # 将播放时长由文本格式（比如：19:00）转换为int秒
+            duration = [int(i) for i in duration.replace("'", "").split(' ')]
+            post['duration'] = duration[0] * 60 + duration[1]
         post['category'] = response.xpath('//span[@class="cate v-center"]/text()').extract_first()
         post['created_at'] = response.xpath('//span[contains(@class,"update-time")]/i/text()').extract_first()
         post['play_counts'] = ci(response.xpath('//i[contains(@class,"play-counts")]/@data-curplaycounts').extract_first())
@@ -121,7 +127,8 @@ class PostsSpider(scrapy.Spider):
         composer['like_counts'] = ci(response.xpath('//span[contains(@class,"like-counts")]/text()').extract_first())
         composer['fans_counts'] = ci(response.xpath('//span[contains(@class,"fans-counts")]/text()').extract_first())
         composer['follow_counts'] = ci(response.xpath('//span[@class="follow-wrap"]/span[2]/text()').extract_first())
-
+        composer['location'] = response.xpath('//span[contains(@class, "icon-location")]/following-sibling::span[1]/text()').get()
+        composer['career'] = response.xpath('//span[contains(@class, "icon-career")]/following-sibling::span[1]/text()').get()
         yield composer
 
 

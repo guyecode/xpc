@@ -12,6 +12,8 @@ class Composer(models.Model):
     like_counts = models.IntegerField()
     fans_counts = models.IntegerField()
     follow_counts = models.IntegerField()
+    location = models.CharField(max_length=32)
+    career = models.CharField(max_length=32)
 
     class Meta:
         managed = False
