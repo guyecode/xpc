@@ -1,6 +1,7 @@
 # coding:utf-8
 from web.models.post import Post
-
+from web.models.comment import Comment
+from web.models.copyright import Copyright
 import redis
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
@@ -22,7 +23,7 @@ def count(self):
 Paginator.count = count
 
 def index(request):
-    return redirect('/post/list/')
+    return redirect('/post/list/hot/')
 
 
 def show_list(request, sort='hot', page=1):

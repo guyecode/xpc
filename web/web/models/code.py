@@ -9,7 +9,7 @@ class Code(models.Model):
     code = models.BigIntegerField()
     created_at = models.DateTimeField()
     ip = models.CharField(max_length=32)
-
+    
     class Meta:
         managed = False
         db_table = 'codes'

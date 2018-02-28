@@ -6,6 +6,11 @@ from xpc.items import PostItem, ComposerItem, CommentItem, CopyrightItem
 from scrapy.exceptions import CloseSpider
 from xpc.utils import convert_int as ci, strip
 
+vip_map = {
+        'yellow-v': 1,
+        'blue-v': 2,
+    }
+
 
 class PostsSpider(scrapy.Spider):
     name = 'posts'
@@ -46,7 +51,7 @@ class PostsSpider(scrapy.Spider):
         post['pid'] = response.meta['pid']
         post['title'] = response.xpath('//div[@class="title-wrap"]/h3/text()').extract_first()
         post['thumbnail'] = response.meta['thumbnail']
-        post['preview'] = strip(response.xpath('//div[@class="filmplay"]//img').extract_first())
+        post['preview'] = strip(response.xpath('//div[@class="filmplay"]//img/@src').extract_first())
         video = response.xpath('//video[@id="xpc_video"]/@src') or response.xpath('//div[@class="td-player"]//video/@src')
         post['video'] = video.extract_first()
         post['video_format'] = strip(response.xpath('//span[contains(@class, "video-format")]/text()').extract_first())
@@ -107,9 +112,11 @@ class PostsSpider(scrapy.Spider):
         composer['cid'] = response.meta['cid']
         composer['name'] = response.xpath('//p[contains(@class,"creator-name")]/text()').extract_first()
         composer['banner'] = response.xpath('//div[@class="banner-wrap"]/@style').extract_first()[21:-1]
-        _elem = response.xpath('//span[@class="avator-wrap-s"]')
-        composer['avatar'] = _elem.xpath('./img/@src').extract_first()
-        composer['verified'] = bool(_elem.xpath('.//span[@class="author-v yellow-v"]'))
+        elem = response.xpath('//span[@class="avator-wrap-s"]')
+        composer['avatar'] = elem.xpath('./img/@src').extract_first()
+        auth_style = elem.xpath('./span/@class').get()
+        if auth_style:
+            composer['verified'] = vip_map.get(auth_style.split(' ')[-1], 0)
         composer['intro'] = strip(response.xpath('//p[contains(@class,"creator-desc")]/text()').extract_first())
         composer['like_counts'] = ci(response.xpath('//span[contains(@class,"like-counts")]/text()').extract_first())
         composer['fans_counts'] = ci(response.xpath('//span[contains(@class,"fans-counts")]/text()').extract_first())
