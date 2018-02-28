@@ -28,3 +28,5 @@ class PostAdmin(admin.ModelAdmin):
     empty_value_display = '-'
 
 admin.site.register(Post, PostAdmin)
+
+a = 1
