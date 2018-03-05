@@ -1,0 +1,856 @@
+{% extends 'base.html' %}
+{% block content %}
+<script src="http://www.xinpianchang.com/public/js/canvas2image.js?v=1503453382" type="text/javascript"></script>
+<div class="header-container">
+
+	<style>
+    .common-layer-cover{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 10001;background: rgba(0,0,0,0.5);}
+    .common-layer-cover .set-bg-pop{position: absolute; width: 540px; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 2px; background-color: #FFF;}
+    .tip-wrap{position: relative; padding: 14px 20px; border-bottom: 4px solid #f7f7f7;}
+    .tip-wrap .set-bg-tab{font-size: 14px; font-weight: 500; color: #333; text-align: center;}
+    .tip-wrap .set-bg-tab a{position: relative; font-weight: 300;}
+    .tip-wrap .set-bg-tab a.selected{font-weight: 500;}
+    .tip-wrap .set-bg-tab a.selected:after{content: ""; position: absolute; width: 20px; height: 4px; background-color: #e74949; left: 50%; transform: translateX(-50%); bottom: -14px;}
+    .tip-wrap .set-bg-tab a.custom{margin-right: 40px;}
+    .tip-wrap .tip-title{font-size: 14px; font-weight: 600px; color: #333;}
+    .tip-wrap .dialog-close{position: absolute; right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer;}
+    .tip-wrap .dialog-close i:before{font-size: 14px; color: #000;}
+    .tip-wrap .dialog-close i:hover:before{color: #666;}
+    .set-bg-pop-drag{width: 100%;background-color: #fff;height: 30px;cursor: move;vertical-align: middle;}
+    .set-bg-pop-drag span {margin-left: -7px;margin-top: 5px;font-size: 14px;}
+
+    .set-bg-pop-content{position: relative; padding: 20px;}
+    .set-bg-main{overflow: hidden; height: 319px; overflow-y: auto; background-color: #f7f7f7;}
+    .set-bg-main::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,0)}
+    .set-bg-main::-webkit-scrollbar{display:none}
+    .set-bg-main .set-bg-2{padding: 0 20px;}
+    .bgd-list{margin-right: -25px;*padding-bottom: 30px;}
+    .bgd-list li{cursor: pointer;border: 2px solid #EFEFEF;border-radius: 2px;width: 153px;height: 104px;margin: 0 20px 20px 0 ; float: left;background-color: #f9f9f9; box-sizing: border-box;}
+    .bgd-list li:nth-of-type(3n){margin-right: 0;}
+    .bgd-list li.selected{border-color: #e74b3b;}
+    .bgd-list li img{width: 100%;height: 100%;}
+    .set-bg-pre{height: 116px;background-color: rgba(0, 0, 0, 0.1);text-align: center; margin-top: 88px; overflow: hidden; position: relative; background-repeat: no-repeat; background-size: cover; background-position: center;}
+    .set-bg-pre .bg-cover{position: absolute; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0,0,0,.4);}
+    .set-bg-pre .loading-cover{position: absolute; width: 100%; height: 100%; top: 0; left: 0;}
+    .set-bg-pre img{max-height: 100%;}
+    .upload-tip{font-size: 12px; font-weight: 300; color: #999; text-align: center; padding-top: 10px;}
+    .set-bg-btn{height: 160px;}
+    .tc{text-align: center;margin-top: 20px;}
+    .button-group{display: block; width: 100px; height: 36px; line-height: 36px; text-align: center; font-size: 14px; font-weight: 500; color: #fff; border-radius: 2px; margin: 30px auto 0;}
+    .uploadify-button{background: #e74b3b;border:none;margin-left: 0;}
+    .uploadify-queue-item *{display: none;}
+    .uploadify-queue-item .uploadify-progress{display: block; position: absolute; width: 400px; height: 4px; border-radius: 2px; background-color: rgba(255, 255, 255, 0.4); top: 50%; left: 50%; transform: translate(-50%, -50%); border: none;}
+    .uploadify-queue-item .uploadify-progress .uploadify-progress-bar{display: block; border-radius: 2px; background-color: #fff;}
+    #id-upload-bg{width: 100%; height: 100%;}
+    #id-upload-bg .bg-cover{position: absolute; width: 100%; height: 100%; top: 0; left: 0; background-color: rgba(0,0,0,.4);}
+    #file_upload_1-button{position: absolute; width: 100%; height: 100%; top: 0; left: 0; padding: 0; margin: 0; border-radius: 0; background-color: rgba(0,0,0,0); font-size: 16px; font-weight: 500; color: #fff; line-height: 116px;}
+</style>
+<div class="common-layer-cover dn">
+    <div class="set-bg-pop pop-c" id="id-setbg-pop">
+        <div class="tip-wrap">
+            <h2 class="set-bg-tab" id="id-bg-tab">
+                <a class="custom selected" href="javascript:void(0);">自定义背景</a>
+                <a class="default" href="javascript:void(0);">默认背景</a>
+            </h2>
+            <span class="common-notice-cover-close  dialog-close close-reload close-drag"><i class="icon-close"></i></span>
+        </div>
+        <div class="set-bg-pop-content">
+            <div class="set-bg-main " id="id-bg-main">
+                <div class="set-bg-1 dn">
+                    <ul class="bgd-list clearfix" id="id-bgd-list"></ul>
+                </div>
+                <div class="set-bg-2 clearfix">
+                    <div class="set-bg-pre" id="id-bg-pre" style="background-image:url(http://cs.xinpianchang.com/app/user/html/stars/css/skin24/bg-big.jpg)">
+                        <span class="bg-cover"></span>
+                        <span class="loading-cover dn"></span>
+                        <a href="javascript:void(0);" id="id-upload-bg">
+                            <span class="bg-cover dn"></span>
+                        </a>
+                    </div>
+                    <div class="upload-tip">请上传格式为 JPG、JPEG、PNG 的文件。<br>文件大小不超过 5M，图片尺寸不小于 1440*370 px。</div>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="button-group bg-red" id="id-cg-save">保 存</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://www.xinpianchang.com/public/js/html5uploader/jquery.loadscript.js?v=1503453383"></script>
+<script type="text/javascript" src="http://www.xinpianchang.com/public/js/html5uploader/jquery.uploadAdapter.js?v=1504677663"></script>
+<script type="text/javascript" src="http://www.xinpianchang.com/app/user/html/stars/css/skinconf/page.js?v=1510813333"></script>
+<script>
+    $(function(){
+        var bgElem = $(".banner-container .banner-wrap");
+        var bgElemStyle = bgElem.attr("style");
+
+        var list = pageData.list;
+        for(var i=0;i<list.length;i++){
+            var tmp = '<li data-skin="'+list[i].id+'"><img src="'+list[i].url+'?20140627" alt=""/></li>';
+            $(tmp).appendTo($('#id-bgd-list'));
+        }
+        bg_cg_func();
+
+        /*  背景设置    */
+        var pace = 100;
+        var _c_skin = $('#id-alpha-skin')?$('#id-alpha-skin'):$(''),_bg_img = '';
+        var _d_skin = $('');
+        var skin = 0;
+        $('#id-alpha').bind('click',function(){
+            _c_skin.remove();
+            _c_skin = $.loadCss('/app/user/html/stars/css/default-alpha.css');
+        });
+        $('#id-no-alpha').bind('click',function(){
+            _c_skin.remove();
+            _c_skin = $.loadCss('/app/user/html/stars/css/default-no-alpha.css');
+        });
+        function bg_cg_func(){
+            $('#id-bgd-list li').on('click',function(){
+                _c_skin.remove();
+                $('#id-bgd-list li.selected').removeClass('selected');
+                $(this).addClass('selected');
+                skin = $(this).data('skin');
+                var url = "http://cs.xinpianchang.com/app/user/html/stars/css/skin" + skin + "/bg-big.jpg";
+                bgElem.attr("style", "background-image:url("+ url +")");
+            });
+        }
+        $('#id-cg-save').bind('click',function(){
+
+            if (!$(".set-bg-1").hasClass("dn")) {
+                if( !skin ){
+                    showDialogTip({
+                        error : true,
+                        tip : "请选择你喜欢的背景"
+                    });
+
+                    return;
+                }
+                var obj ={
+                    type:0,
+                    skin:skin,
+                    url : "http://cs.xinpianchang.com/app/user/html/stars/css/skin" + skin + "/bg-big.jpg"
+                }
+                $.post("/index.php?app=user&ac=space_set&ts=background",obj,function(res){
+                    if( res.status == 1 ){
+                        $(".common-layer-cover").addClass("dn");
+                        showDialogTip({
+                            tip : "修改成功"
+                        },function(){
+                            location.reload();
+                            // allowPageScroll();
+                            // $(".common-layer-cover").addClass("dn");
+                        })
+
+                    }
+                },'json');
+
+            } else {
+                if( _bg_img == '' ){
+                    showDialogTip({
+                        tip : "请先上传背景图",
+                        error : true
+                    });
+                    return;
+                }
+                var obj = {
+                    type:1,url:_bg_img,
+                    alpha:$('#id-alpha').attr('checked')=='checked'?1:0
+                };
+                $.post("/index.php?app=user&ac=space_set&ts=background",obj,function(res){
+                    if( res.status == 1 ){
+                         $(".common-layer-cover").addClass("dn");
+                        showDialogTip({
+                            tip : "修改成功",
+                        },function(){
+                            location.reload();
+                        })
+
+                    }
+                },'json');
+            }
+
+        });
+
+        $('#id-set-bg').on('click',function(){
+
+            var _dom = $('#id-setbg-pop').parent();
+
+            _dom.removeClass("dn");
+            banPageScroll();
+
+        });
+        $('#id-bg-tab>a').each(function(i){
+            $(this).bind('click',function(){
+                $(this).addClass('selected').siblings().removeClass("selected");
+                var _dom = $('#id-bg-main>div');
+                _dom.eq(i).addClass('dn').siblings().removeClass("dn");
+            });
+        });
+        //关闭按钮动作
+        $("html body").on("click",".dialog-close",function(){
+            var _dom = $('#id-setbg-pop').parent();
+            _dom.addClass("dn");
+            allowPageScroll();
+            bgElem.attr("style", bgElemStyle);
+        });
+
+
+        //上传图片
+        var uploadFlag = false;
+
+        $('#id-upload-bg').uploadAdapter({
+            auto: true,multi: false,buttonText: "上传背景图", height : 28,width: 100,
+            uploader: '/index.php?app=user&ac=space_set&ts=background_upload',
+            method: "POST",
+            fileSizeLimit: '5MB',
+            fileTypeDesc: "仅支持JPG、JPEG、PNG、GIF图片",
+            fileTypeExts: "image/gif;image/jpeg;image/jpg;image/png",
+            preventCaching: false,
+            formData:   {'userid':'{{composer.cid}}'},
+            baseUrl: "/public/js/html5uploader",
+            onInit:function(){
+            },
+            onSelect:function(){
+                // $('#id-upload-bg').uploadify('disable',true);
+
+            },
+            onUploadStart: function() {
+                $("#file_upload_1-button").text("");
+                $(".loading-cover").removeClass("dn");
+            },
+            onUploadSuccess: function(file,data,response){
+                var res = $.parseJSON(data);
+                if( res.status == -1 ){
+                    showDialogTip({tip: res.message, error: true});
+
+
+                } else {
+                    _bg_img = res.imgUrl;
+                    bgElem.attr("style", "background-image:url("+ res.imgUrl +")");
+                    $('#id-bg-pre').css("background-image","url(" + res.imgUrl+ ")");
+                     _d_skin.remove();
+                }
+                $("#file_upload_1-button").text("上传背景图");
+                $(".loading-cover").addClass("dn");
+                // $(".bg-cover").removeClass("dn");
+            }
+        });
+    })
+
+/*  end背景设置 */
+</script>
+	<div class="banner-container">
+		<div class="banner-wrap" style="background-image:url({{composer.banner}})">
+			<div class="banner-linear">
+				<!-- <img class="banner-img" src="http://cs.xinpianchang.com/app/user/html/stars/css/skin27/bg-big.jpg"> -->
+
+				<!-- <div class="bannerbg" ></div>
+				 -->
+				<span class="avator-wrap-s">
+					<img src="{{composer.avatar}}">
+										<span class="author-v {{composer.verified}}"></span>
+									</span>
+			</div>
+		</div>
+	</div>
+	<div class="creator-info-wrap">
+		<div class="creator-info">
+			<div class="btn-wrap">
+								<a href="javascript:void(0);" class="btn show-qr fs_12 fw_600 c_b_3"><i class="icon-share"></i></a>
+				<a class="btn contact-btn" href="javascript:void(0)"><span class="fs_12 fw_600 c_b_3 btn-message needLogin">联系他</span></a>
+				<span class="fw_600 c_b_3 bg-red follow-btn btn " data-userid="{{composer.cid}}" data-username="有点时髦"><span class="follow-icon icon-plus v-center "></span><span class="fs_12 follow-text v-center">关注</span></span>
+
+			</div>
+			<p class="creator-name fs_26 fw_600 c_b_26">{{composer.name}}</p>
+						<p class="creator-desc fs_14 fw_300 c_b_3 line-hide-1">{{composer.intro}}</p>
+						<p class="creator-detail fs_14 fw_300 c_b_9">
+				<span class="like-wrap">
+					<span class="v-center">人气</span>&nbsp;
+					<span class="like-counts fw_600 v-center">{{composer.like_counts}}</span>
+				</span>
+				<span class="fans-wrap">
+					<span class="v-center">粉丝</span>&nbsp;
+					<span class="fans-counts fw_600 v-center" data-counts="174">{{composer.fans_counts}}</span>
+				</span>
+				<span class="follow-wrap">
+					<span class="v-center">关注</span>&nbsp;
+					<span class="fw_600 v-center">{{composer.follow_counts}}</span>
+				</span>
+								<span class="icon-location v-center" style="margin-left: 36px;"></span>
+				<span class="v-center" style="margin-left: 5px;">{{composer.location}}</span>
+												<span class="icon-career v-center" style="margin-left: 36px;"></span>
+				<span class="v-center" style="margin-left: 5px;">{{composer.career}}</span>
+							</p>
+		</div>
+	</div>
+	<div class="index-tab">
+		<ul class="tab-list">
+						<li class="select">
+				<a href="http://www.xinpianchang.com/user/space/id-{{composer.cid}}/d-1" class="fs_16 fw_300 c_b_26">作品</a>
+			</li>
+			<li class=""><a class="fs_16 fw_300 c_b_26" href="/user/exp/id-{{composer.cid}}">文章</a></li>
+						<li class="">
+				<a href="http://www.xinpianchang.com/user/like/id-{{composer.cid}}" class="fs_16 fw_300 c_b_26">喜欢</a>
+			</li>
+			<li class="last "><a class="fs_16 fw_300 c_b_26" href="http://www.xinpianchang.com/user/intro/id-{{composer.cid}}">简介</a></li>
+		</ul>
+		<span class="red-underline"></span>
+	</div>
+</div>
+<div class="filmplay-black-box like-creator-wrap dn">
+	<div class="filmplay-inner-box like-creator-box">
+		<div class="like-creator-con creator-con">
+			<span class="close icon-close"></span>
+			<p class="fs_14 fw_300 c_b_26 line-hide-1"><span class="like-creator-counts fw_600"></span>个粉丝</p>
+			<div class="list-wrap">
+				<ul class="list"></ul>
+				<div class="more fs_16 fw_600 c_b_9">更多</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="filmplay-black-box follow-creator-wrap dn">
+	<div class="filmplay-inner-box like-creator-box">
+		<div class="like-creator-con creator-con">
+			<span class="close icon-close"></span>
+			<p class="fs_14 fw_300 c_b_26 line-hide-1">关注了<span class="follow-creator-counts fw_600"></span>个人</p>
+			<div class="list-wrap">
+				<ul class="list"></ul>
+				<div class="more fs_16 fw_600 c_b_9">更多</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="fixed-2017">
+    <div class="fixed-bg" style="width: 50px; background-image: url(//oss-xpc0.xpccdn.com/Upload/boss/2018/01/025a4b685aa499f.png);"></div>
+    <div class="qrcode">
+        <img src="//oss-xpc0.xpccdn.com/Upload/boss/2017/12/305a466e9c57659.png" alt="">
+        <p>扫描二维码<br>查看我的2017<br>年度创作报告</p>
+    </div>
+</div> -->
+<script type="text/javascript">
+	/* 神策统计 */
+	var attrStat = {
+		userPageFrom: pageFrom,
+		userID: '{{composer.cid}}',
+		userCategory: '制作'
+	};
+
+	stat.registerPage(attrStat);
+
+	// 访问页面统计
+	stat.track("userPageView");
+
+	// 点击联系他
+	stat.registerEvent('clickContactUser', function(){
+		var _contactBtn = $('.contact-btn');
+		_contactBtn.on('click', function() {
+			stat.track("clickContactUser");
+		});
+	});
+
+	// 关注和取消关注的统计
+	stat.registerEvent('clickFollowUser', function(){
+		var _followBtn = $('.follow-btn'),
+			flag = _followBtn.hasClass('followed');
+		_followBtn.on('click', function() {
+			stat.track("clickFollowUser", {
+				isFollow: !flag
+			});
+			flag = !flag;
+		});
+	});
+
+	// 点击联系他
+	stat.registerEvent('clickShareUser', function(){
+		var _shareBtn = $('.show-qr');
+		_shareBtn.on('click', function() {
+			stat.track("clickShareUser");
+		});
+	});
+	/* 神策统计 */
+	$(function() {
+		var _needOpen = $(".need-open");
+
+		var hideTimer;
+		var userid = '{{composer.cid}}';
+		_needOpen.on("mouseenter", function() {
+			var _this = $(this),
+			hoverWrap = _this.find(".hover-wrap");
+			_this.addClass("open");
+			hoverWrap.addClass("visible");
+		});
+
+		_needOpen.on("mouseleave", function() {
+			var _this = $(this),
+			hoverWrap = _this.find(".hover-wrap");
+			_this.removeClass("open");
+			hoverWrap.removeClass("visible");
+		});
+
+	});
+	var curId  = '{{composer.cid}}';
+	// 粉丝弹窗
+	var pageLike = 1,
+		_likePopupWrap = $(".like-creator-wrap"),
+		_moreLikeBtn = _likePopupWrap.find(".more"),
+		likeFlag = true;
+
+	$(".fans-wrap").on("click", function() {
+		banPageScroll();
+		_likePopupWrap.removeClass("dn");
+	});
+
+	getLikeData(pageLike);
+	function getLikeData(page, resetContent) {
+		if (page == 1) {
+			_moreLikeBtn.removeClass("dn");
+		}
+		resetContent = resetContent || false;
+		if (likeFlag) {
+			_moreLikeBtn.html("<span class='common-ajax-loading'></span>");
+			likeFlag = false;
+			$.ajax({
+		        type: "GET",
+		        url: "/user/getUserfollow",
+		        data: {type: 'followed', page: page, userid: curId},
+		        dataType: "JSON",
+		        success:function(res){
+		        	if (page == 1) {
+						_likePopupWrap.find(".like-creator-counts").text(toThousands(res.data.totalCount));
+					}
+
+					if (res.data.totalPage == 0) {
+						if (resetContent) {
+							_likePopupWrap.find(".list").html('<li class="no-creator-like fs_14 fw_600 c_b_9">没有粉丝</li>');
+						} else {
+							_likePopupWrap.find(".list").append('<li class="no-creator-like fs_14 fw_600 c_b_9">没有粉丝</li>');
+						}
+
+					} else {
+						var str = '';
+						res.data.list.forEach(function(elem, index) {
+							if (elem.userid) {
+								str += '<li><a class="a-wrap enter-creator-space" href="javascript:;" data-userid="'+ elem.userid +'"><div class="avator-wrap"><img class="avator" src="'+ elem.face_80 +'"><span class="author-v '+ (elem.isadmin == 3 ? "yellow-v" : (elem.isadmin == 4 ? "blue-v" : "")) +'"></span></div><div class="info"><h3 class="fs_14 fw_600 c_b_3 line-hide-1">'+ elem.username +'</h3><div class="info-right fs_12 c_b_9"><span class="fw_300">关注</span>&nbsp;<span class="fw_600 follow-counts">'+ toThousands(elem.count_follow) +'</span><span class="i-icon v-center"></span><span class="fw_300">粉丝</span>&nbsp;<span class="fw_600 fan-counts" data-counts="'+ elem.count_followed +'">'+ toThousands(elem.count_followed) +'</span></div></div>'+ (elem.userid != userid ? '<span class="follow-btn fs_12 c_w_f fw_500 bg-red '+ (elem.isfollow == 1 ? "followed" : "") +'" data-userid="'+ elem.userid +'" data-username="'+ elem.username +'">'+ (elem.isfollow == 1 ? "已关注" : "关注") +'</span>' : '') +'</a></li>'
+							}
+
+						});
+						if (resetContent) {
+							_likePopupWrap.find(".list").html(str);
+							pageLike = 1;
+						} else {
+							_likePopupWrap.find(".list").append(str);
+
+							if (page == 1 && localStorage.getItem("open-fans-box") == 1) {
+								banPageScroll();
+								_likePopupWrap.removeClass("dn");
+								localStorage.setItem("open-fans-box", 0);
+							}
+						}
+
+						pageLike++;
+					}
+
+					likeFlag = true;
+					_moreLikeBtn.text("更多").find(".common-ajax-loading").remove();
+
+					if (page >= res.data.totalPage) {
+						_moreLikeBtn.addClass("dn");
+					}
+		        },
+		        error: function(error) {
+		        	showDialogTip({tip: "网络错误", error: true});
+		        	likeFlag = true;
+		        	_moreLikeBtn.text("更多").find(".common-ajax-loading").remove();
+		        }
+		    });
+		}
+	}
+	_moreLikeBtn.on("click", function() {
+		getLikeData(pageLike);
+	});
+
+	// 关注弹窗
+	var pageFollow = 1,
+		_followPopupWrap = $(".follow-creator-wrap"),
+		_moreFollowBtn = _followPopupWrap.find(".more"),
+		followFlag = true;
+
+	$(".follow-wrap").on("click", function() {
+		banPageScroll();
+		_followPopupWrap.removeClass("dn");
+	});
+
+	getFollowData(pageFollow);
+	function getFollowData(page) {
+		if (page == 1) {
+			_moreFollowBtn.removeClass("dn");
+		}
+		if (followFlag) {
+			_moreFollowBtn.html("<span class='common-ajax-loading'></span>");
+			followFlag = false;
+			$.ajax({
+		        type: "GET",
+		        url: "/user/getUserfollow",
+		        data: {type: 'follow', page: pageFollow, userid: curId},
+		        dataType: "JSON",
+		        success:function(res){
+		        	if (page == 1) {
+						_followPopupWrap.find(".follow-creator-counts").text(toThousands(res.data.totalCount));
+					}
+
+					if (res.data.totalPage == 0) {
+						_followPopupWrap.find(".list").append('<li class="no-creator-like fs_14 fw_600 c_b_9">没有关注</li>');
+
+					} else {
+						var str = '';
+						res.data.list.forEach(function(elem, index) {
+							if (elem.userid) {
+								str += '<li><a class="a-wrap enter-creator-space" href="javascript:;" data-userid="'+ elem.userid +'"><div class="avator-wrap"><img class="avator" src="'+ elem.face_80+'"><span class="author-v '+ (elem.isadmin == 3 ? "yellow-v" : (elem.isadmin == 4 ? "blue-v" : "")) +'"></span></div><div class="info"><h3 class="fs_14 fw_600 c_b_3 line-hide-1">'+ elem.username +'</h3><div class="info-right fs_12 c_b_9"><span class="fw_300">关注</span>&nbsp;<span class="fw_600 follow-counts">'+ toThousands(elem.count_follow) +'</span><span class="i-icon v-center"></span><span class="fw_300">粉丝</span>&nbsp;<span class="fw_600 fan-counts" data-counts="'+ elem.count_followed +'">'+ toThousands(elem.count_followed) +'</span></div></div>'+ (elem.userid != userid ? '<span class="follow-btn fs_12 c_w_f fw_500 bg-red '+ (elem.isfollow == 1 ? "followed" : "") +'" data-userid="'+ elem.userid +'" data-username="'+ elem.username +'">'+ (elem.isfollow == 1 ? "已关注" : "关注") +'</span>' : '') +'</a></li>'
+							}
+						});
+						_followPopupWrap.find(".list").append(str);
+						pageFollow++;
+						followFlag = true;
+						_moreFollowBtn.text("更多").find(".common-ajax-loading").remove();
+					}
+
+					if (page >= res.data.totalPage) {
+						_moreFollowBtn.addClass("dn");
+					}
+		        },
+		        error: function(error) {
+		        	showDialogTip({tip: "网络错误", error: true});
+		        	followFlag = true;
+		        	_moreFollowBtn.text("更多").find(".common-ajax-loading").remove();
+		        }
+		    });
+		}
+	}
+	_moreFollowBtn.on("click", function() {
+		getFollowData(pageFollow);
+	});
+
+</script>
+<div class="filmplay-black-box space-share-wrap dn">
+	<div class="filmplay-inner-box space-share-box">
+		<div class="space-share-con creator-con">
+			<span class="close icon-close"></span>
+			<p class="fs_14 fw_600 c_b_3 line-hide-1">分享给其他人</p>
+			<div class="space-share-detail clearfix short-height">
+				<div class="space-share-left">
+					<div id="code-success"></div>
+					<div class="code-tip fs_12 fw_300 c_b_3">微信扫一扫，分享到朋友圈</div>
+									</div>
+				<div class="space-share-right">
+					<div class="share-tip fs_12 fw_600 c_b_3">分享到其他平台</div>
+					<link rel="stylesheet" type="text/css" href="/public/js/share/share.min.css?v=1504677663">
+<div class="social-share-container">
+
+    <div class="social-share"
+        data-initialized="true"
+        data-image="https://cs.xinpianchang.com/Upload/user/2017/08/3159a7de795f111.png"
+        data-url="http://www.xinpianchang.com/u{{composer.cid}}"
+        data-weibo-title="有点时髦的新片场创作空间（分享自@新片场 ）"
+        data-qzone-title="有点时髦的新片场创作空间"
+        data-qzone-description="一个「点子」公司的短视频自白"
+        data-qzone-summary="一个「点子」公司的短视频自白"
+        data-douban-title="有点时髦的新片场创作空间">
+       <!--  <a href="javascript:;" class="social-share-icon icon-wechat icon-weixin"></a> -->
+        <a href="#" class="social-share-icon icon-weibo"></a>
+        <a href="#" class="social-share-icon icon-qzone"></a>
+        <a href="#" class="social-share-icon icon-qq"></a>
+        <!-- <a href="#" class="social-share-icon icon-douban"></a> -->
+    </div>
+
+
+</div>
+
+<!-- <script type="text/javascript" src="/public/js/jquery.qrcode.js?v=1503453383"></script> -->
+<script type="text/javascript" src="http://www.xinpianchang.com/public/js/share/social-share.js?v=1504677663"></script>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="http://www.xinpianchang.com/public/js/canvas2image.js?v=1503453382" type="text/javascript"></script>
+<script>
+
+
+	var avaterActionFlag = false;
+	var curUserid = "{{composer.cid}}";
+	$(".avater-action").on("click",function(){
+		var _this = $(this);
+
+		$(".space-share-detail canvas").remove();
+
+		_this.find("i")[!avaterActionFlag ? 'addClass' : 'removeClass']("no-active");
+		createQrcode(avaterActionFlag);
+
+		avaterActionFlag = !avaterActionFlag;
+
+	})
+
+	var isSpacePage = '1';
+	$(".show-qr").on("click",function(){
+		$(".space-share-wrap").removeClass("dn");
+		banPageScroll();
+	});
+
+	createQrcode(isSpacePage);
+
+	$(".download-qrcode").on("click",function(){
+			exportCanvasAsPNG($("#code-success canvas")[0], 'qrcode.png');
+	});
+
+	function createQrcode(showAvater){
+		if (isSpacePage) {
+			var img = new Image();
+        	var avaterImg  = "https://cs.xinpianchang.com/Upload/user/2017/08/3159a7de795f111.png@150w_150h_1e_1c?id=801991537";
+        	var isOtherFace = avaterImg.indexOf('cs.') == -1;
+		}
+
+
+		var ua = navigator.userAgent;
+        var isSafari = ua.indexOf("Safari") > -1 && ua.indexOf("Chrome") == -1;
+
+        if (isSafari || isOtherFace) {
+	        $(".avater-action").hide();
+	    } else if (isSpacePage && !isOtherFace) {
+	    	img.crossOrigin = 'anonymous';
+	    }
+
+		var options = {
+            render: 'canvas',
+            minVersion: 4,
+            background: "#fff",
+            size: 140,
+            radius: 0.5,
+            text: isSpacePage ? location.origin + "/u" + curUserid : location.href,
+            // quiet: 4,
+
+            mSize: 0.15,
+            mPosX: 0.5,
+            mPosY: 0.5
+        };
+
+        if (isSpacePage) {
+        	if (isOtherFace) {
+        		$('#code-success').empty().qrcode(options);
+        	} else {
+
+	        	options.mode = isSafari ? 0 : (showAvater ? 4 : 0);
+
+        		img.onload  = function() {
+        			options.image = img;
+		            $('#code-success').empty().qrcode(options);
+		        }
+		        img.src = "https://cs.xinpianchang.com/Upload/user/2017/08/3159a7de795f111.png@150w_150h_1e_1c?id=1551664481";
+		    }
+
+        } else {
+        	$('#code-success').empty().qrcode(options);
+        }
+
+
+	}
+
+	function exportCanvasAsPNG(canvas, fileName) {
+        var MIME_TYPE = "image/png";
+        var dlLink = document.createElement('a');
+        dlLink.download = fileName;
+        dlLink.href = canvas.toDataURL("image/png");
+        dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.href].join(':');
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+    }
+
+</script><div class="space-container">
+	<div class="article-con">
+		<div class="counts-wrap fs_14 fw_300 c_b_26">
+						<div class="cate-list-wrap">
+				<div class="need-open fcate select">
+					<a href="javascript:;" class="cur-cate fs_14 fw_300 c_b_26 select">公开作品<span class="nums">18</span></a>
+					<div class="common-hover-wrap hover-wrap zIndex-3">
+						<div class="hover-box">
+							<ul class="list fw_300">
+								<li class="select"><a href="/user/space/id-{{composer.cid}}/d-1">全部<span class="item-nums">18</span></a></li>
+																<li class=""><a href="/user/space/id-{{composer.cid}}/cateid-2/d-1/audit-1">
+								广告/宣传片<span class="item-nums">12</span></a></li>
+																<li class=""><a href="/user/space/id-{{composer.cid}}/cateid-11/d-1/audit-1">
+								纪录片<span class="item-nums">4</span></a></li>
+																<li class=""><a href="/user/space/id-{{composer.cid}}/cateid-13/d-1/audit-1">
+								创意/实验<span class="item-nums">2</span></a></li>
+															</ul>
+						</div>
+					</div>
+				</div>
+							</div>
+						<!-- <div class="cate-counts-wrap fs_12">作品&nbsp;<span class="counts fw_600">18</span></div> -->
+		</div>
+		<div class="article-wrap">
+            <div class="top-video enter-filmplay" data-articleid="{{composer.posts.0.pid}}" data-videoUrl="UserProfile">
+				<a class="video-cover top-video-cover" href="javascript:;">
+					<img class="video-img lazy-img" _src="{{composer.posts.0.preview}}">
+					<span class="duration fs_14">02' 43''</span>
+					<div class="video-cover-con">
+						<div class="video-mark">
+                            <div class="list-tags">
+                            </div>
+						</div>
+					</div>
+					<div class="video-hover-con"></div>
+				</a>
+				<div class="top-video-info">
+					<a href="/a{{composer.posts.0.pid}}" target="_blank"><h3 class="title fs_20 fw_600 c_b_s_1 line-hide-2">{{composer.posts.0.title}}</h3></a>
+					<p class="type fs_12 fw_300 c_b_9">{{composer.posts.0.category}}</p>
+										<p class="desc fs_12 fw_300 c_b_3 line-hide-6">{{composer.posts.0.description}}</p>
+										<div class="video-other fs_12 c_b_9 fw_300">
+						<span>播放</span><span class="counts fw_600">{{composer.posts.0.play_counts}}</span>
+                                            <span class="i-icon v-center"></span><span>喜欢</span><span class="counts fw_600">{{composer.posts.0.like_counts}}</span>
+					</div>
+					<div class="user-info">
+						<div class="user-link v-center">
+							<span class="name fs_14 fw_300 c_b_3 v-center line-hide-1" style="padding-left: 0;">片中职务</span>
+						</div>
+						<span class="role fs_14 fw_600 c_b_3 v-center line-hide-1">{{composer.posts.0.roles}}</span>
+						<!--  -->
+					</div>
+				</div>
+			</div>
+        <ul class="article-list">
+
+            {% for post in composer.rest_posts %}
+            <li  class="enter-filmplay" data-articleid="{{post.pid}}" data-videourl="UserProfile">
+			<a class="video-cover" href="javascript:;">
+				<img class="lazy-img" _src="{{post.thumbnail}}">
+				<span class="duration fs_12">01' 50''</span>
+				<div class="video-cover-con">
+					<div class="video-mark">
+                        <span class="square"><svg width="24" height="24" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="web切片" transform="translate(-911.000000, -490.000000)"><g id="Group" transform="translate(911.000000, 490.000000)"><circle id="Oval-8" fill="#000000" cx="30" cy="30" r="30"></circle><polygon id="Rectangle-7-Copy" fill="#F7F7F7" points="21.5625 17.8125 38.4375 17.8125 38.4375 42.1875 30 35.5397727 21.5625 42.1875"></polygon></g></g></g></svg></span>
+                    <div class="list-tags">
+                        </div>
+					</div>
+					<p class="fs_12">{{post.category}}</p>
+				</div>
+				<div class="video-hover-con">
+					<div class="fs_12 fw_300 c_w_f desc line-hide-3">{{post.description}}</div>
+					<p class="fs_12">{{post.created_at}} 发布</p>
+									</div>
+			</a>
+			<div class="video-con">
+				<a href="javascript:;"><p class="fs_14 fw_600 c_b_3 line-hide-1">{{post.title}}</p></a>
+				<div class="video-view fs_12 fw_300 c_b_9"><span>播放</span><span class="counts fw_600">{{post.play_counts}}</span>
+                    <span class="i-icon v-center"></span><span>喜欢</span><span class="counts fw_600">{{post.like_counts}}</span></div>
+				<div class="user-info">
+					<div class="user-link v-center">
+						<span class="name fs_12 fw_300 c_b_3 v-center line-hide-1" style="padding-left: 0;">片中职务</span>
+					</div>
+					<span class="role fs_12 fw_300 c_b_9 v-center line-hide-1">{{post.roles}}</span>
+									</div>
+			</div>
+		</li>
+              {% endfor %}
+
+
+				</ul>
+			<div class="more-btn more fs_16 fw_600 c_b_3">更多</div>
+					</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {
+		var _moreBtn = $(".more-btn"),
+			page = 1,
+			flag = true,
+			noMore = false;
+
+		function noMoreTip() {
+			_moreBtn.addClass("no-more").removeClass("more-btn").text("没有更多了");
+			flag = false;
+		}
+
+		if (!$(".article-list li").eq($(".article-list li").length - 2).data("more")) {
+			noMoreTip();
+		}
+
+		_moreBtn.on("click", function() {
+			page++;
+			if (flag) {
+				_moreBtn.html("<span class='common-ajax-loading'></span>");
+				flag = false;
+				$.post(siteUrl +"index.php?app=user&ac=space&ajax=1&id={{composer.cid}}&d=1&cateid=0&audit=1&is_private=0&page="+page,{},function(res){
+					_moreBtn.text("更多").find(".common-ajax-loading").remove();
+					if (res) {
+						$(".article-list").append(res);
+						lazyImg();
+						if (!$(".article-list li").eq($(".article-list li").length - 1).data("more")) {
+							noMoreTip();
+
+						} else {
+							flag = true;
+						}
+					}else{
+						noMoreTip();
+					}
+
+				},'');
+			}
+		});
+
+		// 显隐下面三个按钮
+		$(document).on("mouseenter", ".photo-operation", function() {
+			var _this = $(this);
+			_this.find(".photo-edit-wrap").addClass("visible");
+		});
+
+		$(document).on("mouseleave", ".photo-operation", function() {
+			var _this = $(this);
+			_this.find(".photo-edit-wrap").removeClass("visible");
+		});
+
+		// 图集上面的三个图标
+		$('body').on('click',".photo-edit-box div",function(e){
+			var _this = $(this),
+				articleid = _this.data("id");
+				optype = _this.attr("id");
+				tip = _this.data("tip"),
+				url = '/user/space/ts-'+ optype;
+				audit = $(this).data('audit');
+				obj = {id:articleid,audit:audit==2?audit:0};
+			if (optype=='delete') {
+
+				showSureDialogTip({
+					title : "提示",
+					content :"确认"+ tip +"？"
+				}, function(){
+					dopost(url,obj);
+				});
+
+			}else if(optype=='edit'){
+				$.post(url,obj,function(res){
+					if (res.status==1) {
+				        window.location.href="/upload/index/ts-edit/id-"+articleid;
+					}else{
+						showDialogTip({tip:res.msg,error:true});
+					}
+				},'json')
+			}else if(optype=='opTop'){
+				dopost (url,obj);
+			}
+			e.stopPropagation();
+		})
+		function dopost (url,obj) {
+			$.post(url,obj,function(res){
+				if (res.status==1) {
+			        showDialogTip({tip:res.msg,type: 'success'},function() {
+			        	location.reload();
+			        });
+				}else{
+					showDialogTip({tip:res.msg,error:true});
+				}
+			},'json')
+		}
+	});
+</script>
+{% endblock %}

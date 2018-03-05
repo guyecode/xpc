@@ -1,16 +1,11 @@
-# coding:utf-8
-from web.models.post import Post
-from web.models.comment import Comment
-from web.models.copyright import Copyright
-import redis
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.utils.functional import cached_property
-
-
-POSTS_PER_PAGE = 32
-r = redis.StrictRedis()
-
+from web.models.post import Post
+from web.models.comment import Comment
+from web.helpers.composer import get_posts_by_cid
+from web.helpers import r
+from django.views.decorators.cache import cache_page
 
 @cached_property
 def count(self):
@@ -18,28 +13,34 @@ def count(self):
     if not posts_count:
         posts_count = self.object_list.count()
         r.set('posts_count', posts_count)
+
     return int(posts_count)
 
 Paginator.count = count
 
-def index(request):
-    return redirect('/post/list/hot/')
 
-
-def show_list(request, sort='hot', page=1):
-    sorted_col = None
-    if sort == 'hot':
-        sorted_col = '-play_counts'
-    elif sort == 'newest':
-        sorted_col = '-created_at'
-    elif sort == 'popular':
-        sorted_col = '-like_counts'
-    post_list = Post.objects.order_by(sorted_col)
-    paginator = Paginator(post_list, POSTS_PER_PAGE)
-    posts = paginator.page(int(page))
+@cache_page(60)
+def show_list(request):
+    post_list = Post.objects.order_by('-play_counts')
+    paginator = Paginator(post_list, 40)
+    posts = paginator.page(1)
+    for post in posts:
+        post.composers = post.get_composers()
     return render(request, 'post_list.html', {'posts': posts})
 
 
 def post_detail(request, pid):
-    post = Post.objects.get(pid=pid)
-    return render(request, 'post.html', {'post': post})
+    post = Post.get(pid=pid)
+    post.composers = post.get_composers()
+    composer = post.first_composer
+    composer.posts = get_posts_by_cid(composer.cid, 6)
+    return render(request, 'post.html', locals())
+
+
+def get_comments(request):
+    pid = request.GET.get('id')
+    page = request.GET.get('page')
+    comment_list = Comment.objects.filter(pid=pid).order_by('-created_at')
+    paginator = Paginator(comment_list, 10)
+    comments = paginator.page(page)
+    return render(request, 'comments.html', locals())

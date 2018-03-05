@@ -1,6 +1,7 @@
-# coding:utf-8
 from django.db import models
-from django.contrib import admin
+# from web.models.post import Post
+from web.models.copyright import Copyright
+
 
 class Composer(models.Model):
     cid = models.BigIntegerField(primary_key=True)
@@ -12,19 +13,7 @@ class Composer(models.Model):
     like_counts = models.IntegerField()
     fans_counts = models.IntegerField()
     follow_counts = models.IntegerField()
-    location = models.CharField(max_length=32)
-    career = models.CharField(max_length=32)
 
     class Meta:
         managed = False
         db_table = 'composers'
-
-    def __unicode__(self):
-        return self.title
-
-
-class ComposerAdmin(admin.ModelAdmin):
-    list_display = ('cid', 'name', 'verified', 'intro', 'fans_counts', 'like_counts', 'follow_counts')
-    empty_value_display = '-'
-
-admin.site.register(Composer, ComposerAdmin)

@@ -1,21 +1,18 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
-<link rel="stylesheet" href="http://www.xinpianchang.com/public/js/login/css/rl_login_p.css?v=1498475396" />
-<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/filmplay_new.css?v=1510891439">
-<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/video-js.css?v=1494504055">
-<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/skins/vim.css?v=1505455891">
-<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/skins/filmplay-loading.css?v=1505455891">
-<link rel="stylesheet" href="http://www.xinpianchang.com/public/js/comment/css/rl_exp.css?v=1494504056" />
+<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/filmplay_new.css?v=1515729526">
+<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/video-js.css?v=1503453379">
+<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/skins/vim.css?v=1505455875">
+<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/app/article/skins/skins/filmplay-loading.css?v=1505455875">
+<link rel="stylesheet" href="http://www.xinpianchang.com/public/js/comment/css/rl_exp.css?v=1503453382" />
 <script type="text/javascript" src="http://player.youku.com/jsapi"></script>
 <script type="text/javascript" src="http://www.xinpianchang.com/public/js/flowplayer-3.2.13.min.js"></script>
 <script>
 	commentFocusFlag = true;
-	var origins = [{"id":"460445","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a{{post.pid}}","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a28f0d464e35.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"272679588","duration":"427","bitrate":"5095921","width":"1920","height":"1080","resolution":"1920x1080","codec_name":null,"addtime":"1512632662","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"460446","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a{{post.pid}}","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a28f0d471fd9.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"134623172","duration":"427","bitrate":"2515880","width":"1280","height":"720","resolution":"1280x720","codec_name":null,"addtime":"1512632742","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"460443","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a{{post.pid}}","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a28f0d48196c.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"86896364","duration":"427","bitrate":"1623946","width":"960","height":"540","resolution":"960x540","codec_name":null,"addtime":"1512632608","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"460444","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a{{post.pid}}","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a28f0d48b6d5.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"38931177","duration":"427","bitrate":"727558","width":"640","height":"360","resolution":"640x360","codec_name":null,"addtime":"1512632608","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"}],isTranscoding = 0;
+	var origins = [{"id":"542311","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a10175343","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a7c22b02b8dd.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"134593373","duration":"217","bitrate":"4937145","width":"1920","height":"1080","resolution":"1920x1080","codec_name":null,"addtime":"1518084869","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"542310","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a10175343","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a7c22b039d2d.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"66148386","duration":"217","bitrate":"2426450","width":"1280","height":"720","resolution":"1280x720","codec_name":null,"addtime":"1518084838","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"542308","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a10175343","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a7c22b04832b.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"42632125","duration":"217","bitrate":"1563828","width":"960","height":"540","resolution":"960x540","codec_name":null,"addtime":"1518084834","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"},{"id":"542309","vmovierid":"0","vmovier_series_id":"0","magicid":"0","video_link":"http:\/\/www.xinpianchang.com\/a10175343","qiniu_url":"\/\/qiniu-xpc0.xpccdn.com\/5a7c22b057a4d.mp4","sohu_url":null,"ucloud_url":null,"md5":null,"filesize":"19277743","duration":"217","bitrate":"707144","width":"640","height":"360","resolution":"640x360","codec_name":null,"addtime":"1518084836","status":"1","title":null,"image":null,"uptime":"0","type":"0","upload_uid":"0"}],isTranscoding = 0;
 </script>
-	<script src="http://www.xinpianchang.com/app/article/js/video.js?v=1508917272"></script>
-	<script src="http://www.xinpianchang.com/app/article/js/player.js?v=1494504055"></script>
+	<script src="http://www.xinpianchang.com/app/article/js/video.js?v=1519377607"></script>
+	<script src="http://www.xinpianchang.com/app/article/js/player.js?v=1503453379"></script>
 <style>
 	.vsns{width:100%;min-width: 1180px;}
 	.video{width: 960px;height: 580px;}
@@ -28,7 +25,7 @@
 	}
 </style>
 <div class="filmplay-container">
-	<div class="play-box bg" style="background: url('http://cs.xinpianchang.com/uploadfile/article/2017/12/07/5a28f0d1596ee.jpeg@960w_540h_50-30bl_1e_1c') no-repeat; background-size: cover; background-position: center;" data-src="http://cs.xinpianchang.com/uploadfile/article/2017/12/07/5a28f0d1596ee.jpeg@960w_540h_50-30bl_1e_1c">
+	<div class="play-box bg" style="background: url('http://cs.xinpianchang.com/uploadfile/article/2018/02/08/5a7c22ac939a8.jpeg@960w_540h_50-30bl_1e_1c') no-repeat; background-size: cover; background-position: center;" data-src="http://cs.xinpianchang.com/uploadfile/article/2018/02/08/5a7c22ac939a8.jpeg@960w_540h_50-30bl_1e_1c">
 		<div class="banner-linear">
 			<div class="filmplay">
 				<div class="film-main banner-wrap">
@@ -40,11 +37,10 @@
                                 <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
                                 <param name="allowfullscreen" value="true" />
                                 <param name="flashvars" value='config={"playlist":["http://cs.xinpianchang.com/uploadfile/article/2016/06/22/576a5f9de3cc6.jpeg",{"url": "http://video.xinpianchang.com/576a5f0b63a5e.mp4","autoPlay":false,"autoBuffering":true}]}' />
-                                <!-- <!img src="" style="width:960px;height:540px;"/> -->
-                                {{post.preview}}
+                                <img src="{{post.preview}}" style="width:960px;height:540px;"/>
                             </object>
                         </video>
-                    </div>				
+                    </div>
                 </div>
 			</div>
 		</div>
@@ -54,13 +50,8 @@
 			<div class="filmplay-info">
 				<div class="filmplay-info-common left-section">
 					<div class="video-mark">
-								<a class="pick-wrap" href="javascript:;" style="cursor: default;">
-                                <svg width="30" height="30" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                        <g id="web切片" transform="translate(-911.000000, -490.000000)">
-                                        <g id="Group" transform="translate(911.000000, 490.000000)">
-                                            <circle id="Oval-8" fill="#000000" cx="30" cy="30" r="30"></circle>
-                                            <polygon id="Rectangle-7-Copy" fill="#F7F7F7" points="21.5625 17.8125 38.4375 17.8125 38.4375 42.1875 30 35.5397727 21.5625 42.1875"></polygon></g></g></g></svg>								<span class="award-con-wrap fs_12 fw_300">
+																				<a class="pick-wrap" href="javascript:;" style="cursor: default;">
+								<svg width="30" height="30" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="web切片" transform="translate(-911.000000, -490.000000)"><g id="Group" transform="translate(911.000000, 490.000000)"><circle id="Oval-8" fill="#000000" cx="30" cy="30" r="30"></circle><polygon id="Rectangle-7-Copy" fill="#F7F7F7" points="21.5625 17.8125 38.4375 17.8125 38.4375 42.1875 30 35.5397727 21.5625 42.1875"></polygon></g></g></g></svg>								<span class="award-con-wrap fs_12 fw_300">
 									<span class="award-con">新片场推荐</span>
 								</span>
 							</a>
@@ -75,42 +66,45 @@
 						<span class="i-icon v-center"></span>
 									
 						<span class="update-time v-center"><i>{{post.created_at}}</i></span>
-												<span class="i-icon v-center"></span>
-						<a class="authority-wrap v-center" href="/aboutus/responsibility?t=5" target="_blank"></a>
 											</div>
 					<div class="filmplay-data">
 						<div class="filmplay-data-play filmplay-data-info" title="站内播放数">
 							<span class="icon-play v-center"></span>
-							<i class="fs_12 fw_300 c_b_6 v-center play-counts" data-curplaycounts="{{post.play_counts}}">{{post.play_counts}}</i>
+							<i class="fs_12 fw_300 c_b_6 v-center play-counts" data-curplaycounts="2067">2,067</i>
 						</div>
 												<div class="filmplay-data-btn fs_12">
 														<span class="like-btn  v-center">
 								<span class="like-hand icon-like show"></span>
 								<i class="fs_12">喜欢</i>
-								<span class="v-center like-counts fs_12 c_w_f fw_300" data-counts="{{post.like_counts}}">{{post.like_counts}}</span>
+								<span class="v-center like-counts fs_12 c_w_f fw_300" data-counts="79">79</span>
 							</span>
-                            <span class="share-btn show-qr c_b_3 v-center share-host"><i class="icon-share chrome-10px-left"></i>
-                            <span class="v-center c_b_3 fs_12 fw_600">分享</span></span>
+														<span class="xpc-stat share-btn show-qr c_b_3 v-center share-host" data-event="clickArticleShare"><i class="icon-share chrome-10px-left"></i><span class="v-center c_b_3 fs_12 fw_600">分享</span></span>
 						</div>
 					</div>
 				</div>
 								<div class="filmplay-info-desc left-section">
-					<p class="desc line-hide fs_14 c_b_3 fw_300 line-hide-3">{{post.description}}
+					<p class="desc line-hide fs_14 c_b_3 fw_300 line-hide-3">{{post.description}}</p>
 					<p class="temp-hide fs_14 c_b_3 fw_300">{{post.description}}</p>
 					<div class="more fs_12 fw_600 c_b_9 dn">展开全文</div>
 				</div>
-												<!-- <div class="filmplay-info-equip left-section c_b_3">
-					<h3 class="title-item fs_16 fw_600">使用器材</h3>
-					<p class="info fs_14 fw_300">大疆精灵第四代   佳能5D Mark IV</p>
-				</div> -->
-											</div>
+            </div>
 			<div class="common-comment" id="comment-area">
 				<div id="comment-anchor"></div>
 				<div class="comment-top">
 					<h3 class="fs_20 fw_600 c_b_3">评论&nbsp;<span class="total-counts fs_14 c_b_9"></span></h3>
-					 
-					<div class="no-login-wrap fs_16 fw_600 c_b_9">
-						<a href="javascript:;" class="c_b_3 needLogin">登录</a> 或 <a href="http://www.xinpianchang.com/user/register" class="c_b_3">注册</a>，说说你的看法
+										<div class="input-wrap">
+					 	<a class="avator-wrap" href="/u10141797?from=articleList">
+							<img class="user-avator head-wrap" src="https://oss-xpc0.xpccdn.com/Upload/user/2018/02/285a96c7fd72a4c.jpeg" data-userid="10141797">
+													</a>
+						<div class="input-area clearfix">
+							<textarea name="content" id="comment_content" placeholder="请输入评论内容"></textarea>
+							<div class="relpy-wrap fs_14 fw_300 c_b_9 dn">回复
+								<span class="reply-user fw_600"></span>&nbsp;
+								<span class="reply-con"></span>
+								<i class="icon-close"></i>
+							</div>
+							<span class="send-comment fs_12 bg-red">发表评论</span>
+						</div>
 					</div>
 									</div>
 				<div class="comment-bottom">
@@ -128,22 +122,24 @@
 	<div class="filmplay-creator right-section">
 		<div>
 			<h3 class="fs_20 fw_600">本片创作人</h3>
-										<a href="javascript:;" class="btn fs_12 fw_600 c_b_3 needLogin">你也参与该片创作?</a>
-					</div>
+            <a href="/index.php?app=user&ac=userverify&ts=intro&from=article_right" class="btn fs_12 fw_600 c_b_3">你也参与该片创作?</a>
+        </div>
 
 		<ul class="creator-list">
-									<li>
-				<a href="/u10009121" target="_black" class="head-wrap" data-userid="10009121">
-					<img class="avator lazy-img" _src="https://cs.xinpianchang.com/Upload/user/2017/07/275979a4d0741f3.jpeg@80w_80h_1e_1c">
-										<span class="author-v yellow-v"></span>
+            {% for composer in post.composers %}
+            <li>
+				<a href="/u{{composer.cid}}?from=articleList" target="_black" class="head-wrap" data-userid="{{composer.cid}}">
+					<img class="avator lazy-img" _src="{{composer.avatar}}">
+										<span class="author-v {{composer.verified}}"></span>
 									</a>
 				<div class="creator-info">
-					<a class="name-wrap" href="/u10009121"><span class="name fs_14 fw_600 c_b_3 line-hide-1">刘畅 Leo</span></a>
-					<span class="roles fs_12 fw_300 c_b_9">导演/摄影/剪辑</span>
+					<a class="name-wrap" href="/u{{composer.cid}}?from=articleList"><span class="name fs_14 fw_600 c_b_3 line-hide-1">{{composer.name}}</span></a>
+					<span class="roles fs_12 fw_300 c_b_9">{{composer.role}}</span>
 				</div>
-								<div class="follow-btn fs_12 c_w_f bg-red " data-userid="10009121" data-username="刘畅 Leo">关注</div>
-							</li>
-								</ul>
+								<div class="follow-btn fs_12 c_w_f bg-red " data-userid="{{composer.cid}}" data-username="{{composer.name}}">关注</div>
+            </li>
+            {% endfor %}
+        </ul>
 			</div>
 	<div id="user-team-add" class="user-team-add pr hidden">
 		<!-- <div class="user-team-triangle"></div> -->
@@ -327,91 +323,110 @@
 		<div class="creator-contanier recent-creator-contanier">
 			<ul class="creator-list">
 																		<li>
-						<a href="/u10010390" target="_blank">
-							<span class="head-wrap" data-userid="10010390">
-								<img class="user-avator" src="https://cs.xinpianchang.com//uploadfile/user/2014/06/1753a00c0dd15f9_180.jpeg@80w_80h_1e_1c">
+						<a href="/u10019750?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10019750">
+								<img class="user-avator" src="https://cs.xinpianchang.com/Upload/user/2017/07/19596e99ed5fece.png@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10031564" target="_blank">
-							<span class="head-wrap" data-userid="10031564">
-								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/02/13/58a18d6d678d3.jpeg@80w_80h_1e_1c">
+						<a href="/u10212311?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10212311">
+								<img class="user-avator" src="https://oss-xpc0.xpccdn.com/Upload/user/2018/01/035a4cf897eac7c.png">
+								<span class="author-v blue-v"></span>
+							</span>
+						</a>
+					</li>
+																											<li>
+						<a href="/u10001773?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10001773">
+								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2016/08/02/57a0a00f06556_180.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10025935" target="_blank">
-							<span class="head-wrap" data-userid="10025935">
-								<img class="user-avator" src="https://cs.xinpianchang.com/public/default_head/a_180.jpeg@80w_80h_1e_1c">
+						<a href="/u10029035?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10029035">
+								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/03/15/58c8a818b948f.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10000253" target="_blank">
-							<span class="head-wrap" data-userid="10000253">
-								<img class="user-avator" src="https://cs.xinpianchang.com/user_center_xpc_line/user_avatar_10000253.jpg@80w_80h_1e_1c">
+						<a href="/u10006419?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10006419">
+								<img class="user-avator" src="https://cs.xinpianchang.com/Upload/user/2017/07/105962dea692669.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10000591" target="_blank">
-							<span class="head-wrap" data-userid="10000591">
-								<img class="user-avator" src="https://cs.xinpianchang.com//uploadfile/user/2016/12/165853a34b194ed_180.jpeg@80w_80h_1e_1c">
-								<span class="author-v yellow-v"></span>
-							</span>
-						</a>
-					</li>
-																											<li>
-						<a href="/u10009010" target="_blank">
-							<span class="head-wrap" data-userid="10009010">
-								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/07/04/595b09b6d333d.jpeg@80w_80h_1e_1c">
+						<a href="/u10001601?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10001601">
+								<img class="user-avator" src="https://oss-xpc0.xpccdn.com/Upload/user/2017/12/145a31f382721d7.jpeg">
 								<span class="author-v blue-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li class="more">
-						<a href="/article/filmplay/ts-recent_visit/articleid-{{post.pid}}" class="icon-arrow-right"></a>
+						<a href="/article/filmplay/ts-recent_visit/articleid-10175343" class="icon-arrow-right"></a>
 					</li>
 																</ul>
 		</div>
 		<div class="creator-contanier like-creator-contanier dn">
 						<ul class="creator-list">
 																		<li>
-						<a href="/u10059317" target="_blank">
-							<span class="head-wrap" data-userid="10059317">
-								<img class="user-avator" src="https://oss-xpc0.xpccdn.com/Upload/user/2017/12/115a2e54ed68d47.jpeg">
+						<a href="/u10006419?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10006419">
+								<img class="user-avator" src="https://cs.xinpianchang.com/Upload/user/2017/07/105962dea692669.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10007418" target="_blank">
-							<span class="head-wrap" data-userid="10007418">
-								<img class="user-avator" src="https://cs.xinpianchang.com/Upload/user/2017/08/12598e92d136627.jpeg@80w_80h_1e_1c">
+						<a href="/u10122439?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10122439">
+								<img class="user-avator" src="https://cs.xinpianchang.com/Upload/user/2017/10/1959e817c3a3d56.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10006694" target="_blank">
-							<span class="head-wrap" data-userid="10006694">
-								<img class="user-avator" src="https://cs.xinpianchang.com//uploadfile/user/2016/04/12/570cf8859bd89_180.jpeg@80w_80h_1e_1c">
+						<a href="/u10128829?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10128829">
+								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/05/23/5923c57656b46.jpeg@80w_80h_1e_1c">
 								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
 					</li>
 																											<li>
-						<a href="/u10105274" target="_blank">
-							<span class="head-wrap" data-userid="10105274">
-								<img class="user-avator" src="https://cs.xinpianchang.com/user_center_xpc_line/user_avatar_10105274.jpg@80w_80h_1e_1c">
-								<span class="author-v blue-v"></span>
+						<a href="/u10220044?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10220044">
+								<img class="user-avator" src="https://oss-xpc0.xpccdn.com/Upload/user/2018/01/115a57054fabcd5.jpeg">
+								<span class="author-v yellow-v"></span>
 							</span>
 						</a>
+					</li>
+																											<li>
+						<a href="/u10007323?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10007323">
+								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/05/11/59140d94adc72.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+						</a>
+					</li>
+																											<li>
+						<a href="/u10010839?from=articleList" target="_blank">
+							<span class="head-wrap" data-userid="10010839">
+								<img class="user-avator" src="https://cs.xinpianchang.com/uploadfile/user/2016/11/29/583d036639794_180.jpeg@80w_80h_1e_1c">
+								<span class="author-v yellow-v"></span>
+							</span>
+						</a>
+					</li>
+																											<li class="more">
+						<a href="/article/filmplay/ts-recent_like/articleid-10175343" class="icon-arrow-right"></a>
 					</li>
 																</ul>
 					</div>
@@ -420,94 +435,26 @@
 						<div class="filmplay-recommend right-section">
 				<div>
 					<h3 class="fs_20 fw_600">创作人的其他作品</h3>
-					<a href="/u10009121" class="btn fs_12 fw_600 c_b_3">更多</a>
+					<a href="/u{{composer.cid}}" class="btn fs_12 fw_600 c_b_3">更多</a>
 				</div>
 				<ul class="recommend-list">
-															<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71387?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595dd3a825493.jpeg@335w.jpg">
+                    {% for post in composer.posts %}
+                    <li>
+						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a{{post.pid}}?from=ArticlePageRecommand">
+							<img class="cover" src="{{post.thumbnail}}">
 							<span class="cover-con"></span>
 						</a>
 						<div class="right-con">
 							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71387?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">IKEA 宜家 - 家是最好的餐厅 Best Restaurant</a>
-								<div href="javascript:;" class="cate-wrap">
-									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">广告/宣传片 - 网络广告</span>
-								</div>
-							</div>
-						</div>
-					</li>
-																				<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71423?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595dd42099389.jpeg@335w.jpg">
-							<span class="cover-con"></span>
-						</a>
-						<div class="right-con">
-							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71423?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">The Unreasonable - 张权 肥肠面馆</a>
+								<a target="_blank" href="http://www.xinpianchang.com/a{{post.pid}}?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">{{post.title}}</a>
 								<div href="javascript:;" class="cate-wrap">
 									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">{{post.category}}</span>
 								</div>
 							</div>
 						</div>
 					</li>
-																				<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71431?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595dde6c95ebd.jpeg@335w.jpg">
-							<span class="cover-con"></span>
-						</a>
-						<div class="right-con">
-							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71431?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">The Unreasonable - 全移动空间 All Moving Space</a>
-								<div href="javascript:;" class="cate-wrap">
-									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">{{post.category}}</span>
-								</div>
-							</div>
-						</div>
-					</li>
-																				<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71446?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595de4e04b535.jpeg@335w.jpg">
-							<span class="cover-con"></span>
-						</a>
-						<div class="right-con">
-							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71446?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">The Unreasonable - Kevin Cheung 张玮晋 升级再造</a>
-								<div href="javascript:;" class="cate-wrap">
-									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">{{post.category}}</span>
-								</div>
-							</div>
-						</div>
-					</li>
-																				<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71427?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595dd83fe5b36.jpeg@335w.jpg">
-							<span class="cover-con"></span>
-						</a>
-						<div class="right-con">
-							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71427?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">微信支付 x 伊周 - 无现新生</a>
-								<div href="javascript:;" class="cate-wrap">
-									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">广告/宣传片 - 网络广告</span>
-								</div>
-							</div>
-						</div>
-					</li>
-																				<li>
-						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a71433?from=article_right"">
-							<img class="cover" src="http://cs.xinpianchang.com/uploadfile/article/2017/07/06/595dde30b2749.jpeg@335w.jpg">
-							<span class="cover-con"></span>
-						</a>
-						<div class="right-con">
-							<div class="article-contanier">
-								<a target="_blank" href="http://www.xinpianchang.com/a71433?from=article_right" class="title fs_14 fw_600 c_b_3 line-hide-2">The Unreasonable - 彩虹合唱团 RCS</a>
-								<div href="javascript:;" class="cate-wrap">
-									<span class="cate fs_12 fw_300 c_b_9 line-hide-1">{{post.category}}</span>
-								</div>
-							</div>
-						</div>
-					</li>
-														</ul>
+                    {% endfor %}
+                </ul>
 			</div>
 					</div>
 		<div class="private-ground">
@@ -534,7 +481,7 @@
 			</div>
 		</div>
 		<!-- 通栏广告 -->
-		<a class="create-man-banner" href="http://www.xinpianchang.com/activity/filmfest/ts-vinfo?a=4" target="_blank"><img src="//cs.vmovier.com/Uploads/Activity/2017-12-04/5a24c8feac9d4.jpg"></a>
+		<!--<a class="create-man-banner" href="/activity/independence/ts-newye2017" target="_blank"><img src="//oss-xpc0.xpccdn.com/Upload/boss/2018/01/155a5c92f6ca3e0.jpeg"></a>-->
 	</div>
 	<div class="filmplay-black-box join-creator-wrap dn">
 		<div class="filmplay-inner-box join-creator-box">
@@ -713,19 +660,60 @@
 	</div>
 </div>
 
-<!--@人弹窗-->
 <div class="at-wrap">
 	<span class="db">输入对方昵称来@TA</span>
 	<ul class="at-list"></ul>
 </div>
 <span id="ruler" class="ruler">ruler</span> 
 
-<script src="/app/article/js/team.js?v=1508917272"></script>
-<script type="text/javascript" src="/app/article/js/RL-pager.js?v=1499373946"></script>
-<script type="text/javascript" src="/public/js/ZeroClipboard.js?v=1494504056"></script>
+<script src="http://www.xinpianchang.com/app/article/js/team.js?v=1508917231"></script>
+<script type="text/javascript" src="http://www.xinpianchang.com/app/article/js/RL-pager.js?v=1503453379"></script>
+<script type="text/javascript" src="http://www.xinpianchang.com/public/js/ZeroClipboard.js?v=1503453382"></script>
 <script type="text/javascript">
+	/* 神策统计 */
+	var attrStat = {
+		articlePageFrom: pageFrom,
+		articleName: "百度地图《我嫁谁也不嫁我爸这样的人》（泰美时光）",
+		articleID: "10175343",
+		articleUser: "{{composer.cid}}",
+		articleChannelType: $(".filmplay-intro .cate").text().trim()
+	};
+
+	stat.registerPage(attrStat);
+
+	// 访问页面统计
+	stat.track("articlePageViewed");
+
+	// 首次播放视频
+	stat.registerEvent('clickArticlePlay', function(){
+		if ($('video').length) {
+			var flag = true;
+			$('video')[0].addEventListener('play', function () {
+		       if (flag) {
+		       	 stat.track("clickArticlePlay");
+		       	 flag = false;
+		       }
+		    }, false);
+		}
+		
+	})
+
+	// 点击喜欢或取消喜欢统计
+	stat.registerEvent('clickArticleLike', function(){
+		var _likeBtn = $('.filmplay-data-btn .like-btn'),
+			flag = _likeBtn.hasClass('liked');
+		_likeBtn.on('click', function() {
+			stat.track("clickArticleLike", {
+				isLike: !flag
+			});
+			flag = !flag;
+		});
+	})
+	/* 神策统计 */
+
+	
 	//统计访问数
-	$.post("/article/filmplay/ts-viewed",{aid:{{post.pid}}},function(res) {});
+	$.post("/article/filmplay/ts-viewed",{aid:10175343},function(res) {});
 	var client;
 
 	var _privateGround = $(".private-ground"),
@@ -743,7 +731,7 @@
 	_sharedPrivate.on("click",function(){
 		
 
-		$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : {{post.pid}},handle : "share"},function(res){
+		$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : 10175343,handle : "share"},function(res){
 
 			if(res.data){
 				// zhuge.track("私密视频-私密分享");
@@ -778,7 +766,7 @@
 			content :"是否确认关闭加密分享？之前的链接和密码将永久失效。"
 		},function(){
 			// zhuge.track("私密视频-取消分享确定");
-			$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : {{post.pid}},handle : "unshare"},function(res){
+			$.post('/index.php?app=article&ac=filmplay&ts=share',{articleid : 10175343,handle : "unshare"},function(res){
 				// _shareBtnPrivate.text("加密分享");
 				
 				_sharedPrivate.text("开启加密分享");
@@ -809,7 +797,7 @@
 	    document.execCommand("Copy"); //执行浏览器复制命令
 	} 
 
-	var authorid = '10009121',
+	var authorid = '{{composer.cid}}',
 		articleid = '{{post.pid}}';
 
 	$("#comment_content").focus(function() {
@@ -867,7 +855,7 @@
 	    }
 	}
 	// 获取总播放数
-	$.post('/index.php?app=article&ac=filmplay&ts=plat_views',{id:'{{post.pid}}'},function(re){
+	$.post('/index.php?app=article&ac=filmplay&ts=plat_views',{id:'10175343'},function(re){
 		if (re) {
 			$(".network-play-counts").text(toThousands(re.out_views));
 		}else{
@@ -878,7 +866,7 @@
 	},'json');
 
 	// 获取站外播放数
-	// $.post(siteUrl+'index.php?app=article&ac=filmplay&ts=plat_views',{id:'{{post.pid}}'},function(re){
+	// $.post(siteUrl+'index.php?app=article&ac=filmplay&ts=plat_views',{id:'10175343'},function(re){
 	// 	if (re) {
 	// 		$(".play-counts").text(re.views);
 	// 	}else{
@@ -1034,7 +1022,7 @@
 		},'json');
 	});
 	// 授权信息悬停显示
-	var authorizedType = 1,
+	var authorizedType = 0,
 		_authorityWrap = $(".authority-wrap"),
 		_authorizeCon = $(".authorize-con");
 	if (authorizedType != 0) {
@@ -1165,7 +1153,6 @@
 					});
 
 				} else {
-
 					_commentEmpty.addClass("dn");
 					$(".comment-list").removeClass("dn").prepend(
 						'<li>'+
@@ -1180,7 +1167,7 @@
 									'<a class="head-wrap" href="/u'+ res.userid +'" data-userid="'+ res.userid +'"><h3 class="reply-user-name fs_14 fw_600 c_b_3 line-hide-1">'+ replyNameText +'</h3></a>'+
 									'<div class="reply-con fs_14 fw_300 c_b_3">'+ replyConText +'</div>'+
 								'</div>' : '') +
-								'<div class="comment-btn fs_12 fw_600 c_b_9" data-replyid="'+ res.article_comment_id +'">'+ (res.userid == userid ? '<span class="del-btn" data-commentid="'+ res.article_comment_id +'">删除</span><span class="i-icon v-center"></span>': '') +
+								'<div class="comment-btn fs_12 fw_600 c_b_9" data-replyid="'+ res.article_comment_id +'">'+ ((res.userid == userid || isadmin == 1) ? '<span class="del-btn" data-commentid="'+ res.article_comment_id +'">删除</span><span class="i-icon v-center"></span>': '') +
 									'<span class="relpy-btn">回复</span><span class="i-icon v-center"></span>'+
 									'<span class="like-btn"><i class="approve-text">赞</i>&nbsp;<i class="approve-counts">(<i class=counts>0</i>)</i></span>'+
 								'</div>'+
@@ -1324,6 +1311,15 @@
 			_this.addClass("select").siblings().removeClass("select");
 			$(".visit-creator-wrap .creator-contanier").eq(index).removeClass("dn").siblings(".creator-contanier").addClass("dn");
 		});
+		
+		$(window).on("scroll", function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop > $(".banner-wrap").height()) {
+				$(".fixed-2017-amimate").addClass("show");
+			} else {
+				$(".fixed-2017-amimate").removeClass("show");
+			}
+		});
 
 	});
 </script>
@@ -1339,18 +1335,18 @@
 									</div>
 				<div class="space-share-right">
 					<div class="share-tip fs_12 fw_600 c_b_3">分享到其他平台</div>
-					<link rel="stylesheet" type="text/css" href="/public/js/share/share.min.css?v=1504677675">
+					<link rel="stylesheet" type="text/css" href="http://www.xinpianchang.com/public/js/share/share.min.css?v=1504677663">
 <div class="social-share-container">
 
     <div class="social-share" 
         data-initialized="true" 
-        data-image="{{post.preview}}"
-        data-url="http://www.xinpianchang.com/a{{post.pid}}?from=square" 
-        data-weibo-title="{{post.title}}（分享自@新片场 ）" 
-        data-qzone-title="{{post.title}}" 
+        data-image="http://cs.xinpianchang.com/uploadfile/article/2018/02/08/5a7c22ac939a8.jpeg@960w_540h_1e_1c.jpg"
+        data-url="http://www.xinpianchang.com/a10175343?from=ArticleList" 
+        data-weibo-title="百度地图《我嫁谁也不嫁我爸这样的人》（泰美时光）（分享自@新片场 ）" 
+        data-qzone-title="百度地图《我嫁谁也不嫁我爸这样的人》（泰美时光）" 
         data-qzone-description="这个挺不错的~"
         data-qzone-summary="这个挺不错的~" 
-        data-douban-title="{{post.title}}（分享自@新片场 ）">
+        data-douban-title="百度地图《我嫁谁也不嫁我爸这样的人》（泰美时光）（分享自@新片场 ）">
        <!--  <a href="javascript:;" class="social-share-icon icon-wechat icon-weixin"></a> -->
         <a href="#" class="social-share-icon icon-weibo"></a>
         <a href="#" class="social-share-icon icon-qzone"></a>
@@ -1361,20 +1357,20 @@
 
 </div>
 
-<!-- <script type="text/javascript" src="/public/js/jquery.qrcode.js?v=1494504056"></script> -->
-<script type="text/javascript" src="/public/js/share/social-share.js?v=1504677675"></script>
+<!-- <script type="text/javascript" src="/public/js/jquery.qrcode.js?v=1503453383"></script> -->
+<script type="text/javascript" src="http://www.xinpianchang.com/public/js/share/social-share.js?v=1504677663"></script>
 
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="/public/js/canvas2image.js?v=1494504056" type="text/javascript"></script>
+<script src="http://www.xinpianchang.com/public/js/canvas2image.js?v=1503453382" type="text/javascript"></script>
 <script>
 
 
 	var avaterActionFlag = false;
-	var curUserid = "";
+	var curUserid = "10141797";
 	$(".avater-action").on("click",function(){
 		var _this = $(this);
 
@@ -1402,7 +1398,7 @@
 	function createQrcode(showAvater){
 		if (isSpacePage) {
 			var img = new Image();
-        	var avaterImg  = "?id=1026839060";
+        	var avaterImg  = "?id=590289159";
         	var isOtherFace = avaterImg.indexOf('cs.') == -1;
 		}
 
@@ -1441,7 +1437,7 @@
         			options.image = img;
 		            $('#code-success').empty().qrcode(options);
 		        }
-		        img.src = "?id=1441219190";
+		        img.src = "?id=220729214";
 		    }
 
         } else {

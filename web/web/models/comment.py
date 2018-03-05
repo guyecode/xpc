@@ -1,6 +1,5 @@
-# coding:utf-8
 from django.db import models
-from django.contrib import admin
+
 
 class Comment(models.Model):
     commentid = models.IntegerField(primary_key=True)
@@ -16,10 +15,3 @@ class Comment(models.Model):
     class Meta:
         managed = False
         db_table = 'comments'
-
-
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('commentid', 'pid', 'cid', 'uname', 'created_at', 'content', 'like_counts', 'reply')
-    empty_value_display = '-'
-
-admin.site.register(Comment, CommentAdmin)

@@ -1,14 +1,17 @@
-# coding:utf-8
+import pickle
 from django.db import models
-from django.contrib import admin
+from web.models import Model
+from web.models.composer import Composer
+from web.models.copyright import Copyright
+from web.helpers import r
 
-class Post(models.Model):
+
+class Post(models.Model, Model):
     pid = models.BigIntegerField(primary_key=True)
     title = models.CharField(max_length=256)
     preview = models.CharField(max_length=512, blank=True, null=True)
     video = models.CharField(max_length=512, blank=True, null=True)
     video_format = models.CharField(max_length=512, blank=True, null=True)
-    duration = models.IntegerField()
     category = models.CharField(max_length=512)
     created_at = models.CharField(max_length=128)
     description = models.TextField(blank=True, null=True)
@@ -17,16 +20,29 @@ class Post(models.Model):
     thumbnail = models.CharField(max_length=512, blank=True, null=True)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'posts'
 
-    def __unicode__(self):
-        return self.title
- 
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('pid', 'title', 'video_format', 'category', 'created_at', 'play_counts', 'like_counts')
-    empty_value_display = '-'
+    def get_composers(self):
+        composers = []
+        cache_key = 'cr_pid_%s' % self.pid
+        if r.exists(cache_key):
+            cr_list = [pickle.loads(i) for i in r.lrange(cache_key, 0, -1)]
+        else:
+            cr_list = Copyright.objects.filter(pid=self.pid).all()
+            r.lpush(cache_key, *[pickle.dumps(cr) for cr in cr_list])
+        for cr in cr_list:
+            composer = r.get('composer_%s' % cr.cid)
+            if composer:
+                composer = pickle.loads(composer)
+            else:
+                composer = Composer.objects.filter(cid=cr.cid).first()
+                r.set('composer_%s' % cr.cid, pickle.dumps(composer))
+            if composer:
+                composer.role = cr.roles
+                composers.append(composer)
+        return composers
 
-admin.site.register(Post, PostAdmin)
-
-a = 1
+    @property
+    def first_composer(self):
+        return self.composers[0]

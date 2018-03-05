@@ -1,286 +1,336 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="channel-container">
-    <!-- 通栏广告 -->
-    <!-- <a class="create-man-banner" href="/a89608?from=banner"><img src="//cs.vmovier.com/Uploads/Activity/2017-09-29/59ce0519cbfd7.jpg"></a> -->
-    <div class="choose-bar">
-        <div class="type-1 article-type">
-            <span class="article-type-btn fs_16 fw_600 c_b_3">
-                                                            全部作品
-                                                                </span>
-            <i class="icon-triangle-down"></i>
-            <div class="common-hover-wrap type-child clearfix">
-                <div class="inner-wrap">
-                    <div class="type-2-list-wrap">
-                        <ul class="type-2-list">
-                            <li data-type="cate" data-id="0"><a class="fs_14 fw_300 c_b_3" href="javascript:;">全部作品</a></li>
-                                                            <li data-type="cate" data-id="2">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-2/sort-like">广告/宣传片</a>
-                                </li>
-                                                            <li data-type="cate" data-id="1">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-1/sort-like">剧情短片</a>
-                                </li>
-                                                            <li data-type="cate" data-id="121">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-121/sort-like">网络电影</a>
-                                </li>
-                                                            <li data-type="cate" data-id="13">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-13/sort-like">创意/实验</a>
-                                </li>
-                                                            <li data-type="cate" data-id="11">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-11/sort-like">纪录片</a>
-                                </li>
-                                                            <li data-type="cate" data-id="3">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-3/sort-like">MV</a>
-                                </li>
-                                                            <li data-type="cate" data-id="10">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-10/sort-like">混剪/配音</a>
-                                </li>
-                                                            <li data-type="cate" data-id="12">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-12/sort-like">特殊摄影</a>
-                                </li>
-                                                            <li data-type="cate" data-id="7">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-7/sort-like">栏目/网剧</a>
-                                </li>
-                                                            <li data-type="cate" data-id="5">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-5/sort-like">动画</a>
-                                </li>
-                                                            <li data-type="cate" data-id="9">
-                                    <a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-9/sort-like">预告片/花絮</a>
-                                </li>
-                                                        <li data-type="cate" data-id="vr"><a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/type-vr/sort-vmovier">VR</a></li>
-                        </ul>
+	<!-- 通栏广告 -->
+	<!--<a class="create-man-banner" href="/activity/independence/ts-newye2017" target="_blank"><img src="//oss-xpc0.xpccdn.com/Upload/boss/2018/01/155a5c92f6ca3e0.jpeg"></a>-->
 
-                        
-                    </div>
-                    <div class="type-3-list-wrap">
-                            <ul class="type-3-creator type-3-list">
-                                <li data-type="cate2" data-id="0" data-fid="2"><a class=" fs_12 fw_300 c_b_3 select" href="/channel/index/id-/sort-like">全部</a></li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
-                        </div>
-                </div>
-            </div>
-        </div>
-        <div class="sort-type v-center">
-            <a class="tab fs_16 fw_300 c_b_9 select v-center" href="/post/list/hot/">热门</a>
-            <i class="slash-icon v-center fs_16">/</i>
-            <a class="tab fs_16 fw_300 c_b_9  v-center" href="/post/list/newest/">最新</a>
-            <i class="slash-icon v-center fs_16">/</i>
-                        <a class="tab fs_16 fw_300 c_b_9  v-center" href="/post/list/popular/">精选</a>
-                    </div>
-    </div>
-    <div class="channel-con">
-        <ul class="video-list">
-            {% for post in posts %}
-            <li class="enter-filmplay" data-articleid="{{post.pid}}" data-videourl="channel">
+	<div class="choose-bar-v2">
+		<div class="type-up">
+			<div class="type-mark fs_14 fw_300 c_b_3 mar-bottom">
+				<span class="mark">分类</span>
+				<div class="type-global">
+					<span class="cur" data-type="cate" data-id="0"><a class="fs_14 fw_300 c_b_3" href="javascript:;">全部作品</a></span>
+											<span class="" data-type="cate" data-id="2">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-2/sort-like?from=articleListPage">广告/宣传片</a>
+						</span>
+											<span class="" data-type="cate" data-id="1">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-1/sort-like?from=articleListPage">剧情短片</a>
+						</span>
+											<span class="" data-type="cate" data-id="121">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-121/sort-like?from=articleListPage">网络电影</a>
+						</span>
+											<span class="" data-type="cate" data-id="13">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-13/sort-like?from=articleListPage">创意/实验</a>
+						</span>
+											<span class="" data-type="cate" data-id="11">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-11/sort-like?from=articleListPage">纪录片</a>
+						</span>
+											<span class="" data-type="cate" data-id="3">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-3/sort-like?from=articleListPage">MV</a>
+						</span>
+											<span class="" data-type="cate" data-id="10">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-10/sort-like?from=articleListPage">混剪/配音</a>
+						</span>
+											<span class="" data-type="cate" data-id="12">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-12/sort-like?from=articleListPage">特殊摄影</a>
+						</span>
+											<span class="" data-type="cate" data-id="7">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-7/sort-like?from=articleListPage">栏目/网剧</a>
+						</span>
+											<span class="" data-type="cate" data-id="5">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-5/sort-like?from=articleListPage">动画</a>
+						</span>
+											<span class="" data-type="cate" data-id="9">
+							<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-9/sort-like?from=articleListPage">预告片/花絮</a>
+						</span>
+										<span class="" data-type="cate" data-id="vr"><a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/type-vr/sort-vmovier?from=articleListPage">VR</a></span>
+				</div>
+			</div>
+
+
+
+
+
+		</div>
+		<div class="type-down">
+			<div class="sort-type fw_300 c_b_9">
+				<span class="tab fs_16  pick v-center select" data-type="sort" data-id="recommend"><a href="javascript:;">热门</a></span>
+				<i class="i-icon v-center fs_16"></i>
+
+								<span class="tab fs_16 pick v-center " data-type="sort" data-id="count_liked"><a href="http://www.xinpianchang.com/channel/index/id-0/sort-pick/type-0?from=articleListPage">精选</a></span>
+								<i class="i-icon v-center fs_16"></i>
+				<span class="tab fs_16 last v-center " data-id="addtime" data-type="sort"><a href="http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0?from=articleListPage">最新</a></span>
+
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="choose-bar dn">
+		<div class="xpc-stat type-1 article-type" data-event="clickArticleChannel">
+			<span class="article-type-btn fs_16 fw_600 c_b_3">
+															全部作品
+																</span>
+			<i class="icon-triangle-down"></i>
+			<div class="common-hover-wrap type-child clearfix">
+				<div class="inner-wrap">
+					<div class="type-2-list-wrap">
+						<ul class="type-2-list">
+							<li data-type="cate" data-id="0"><a class="fs_14 fw_300 c_b_3" href="javascript:;">全部作品</a></li>
+															<li data-type="cate" data-id="2">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-2/sort-like">广告/宣传片</a>
+								</li>
+															<li data-type="cate" data-id="1">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-1/sort-like">剧情短片</a>
+								</li>
+															<li data-type="cate" data-id="121">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-121/sort-like">网络电影</a>
+								</li>
+															<li data-type="cate" data-id="13">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-13/sort-like">创意/实验</a>
+								</li>
+															<li data-type="cate" data-id="11">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-11/sort-like">纪录片</a>
+								</li>
+															<li data-type="cate" data-id="3">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-3/sort-like">MV</a>
+								</li>
+															<li data-type="cate" data-id="10">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-10/sort-like">混剪/配音</a>
+								</li>
+															<li data-type="cate" data-id="12">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-12/sort-like">特殊摄影</a>
+								</li>
+															<li data-type="cate" data-id="7">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-7/sort-like">栏目/网剧</a>
+								</li>
+															<li data-type="cate" data-id="5">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-5/sort-like">动画</a>
+								</li>
+															<li data-type="cate" data-id="9">
+									<a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/id-9/sort-like">预告片/花絮</a>
+								</li>
+														<li data-type="cate" data-id="vr"><a class="fs_14 fw_300 c_b_3" href="http://www.xinpianchang.com/channel/index/type-vr/sort-vmovier">VR</a></li>
+						</ul>
+
+
+					</div>
+					<div class="type-3-list-wrap">
+							<ul class="type-3-creator type-3-list">
+								<li data-type="cate2" data-id="0" data-fid="2"><a class=" fs_12 fw_300 c_b_3 select" href="/channel/index/id-/sort-like">全部</a></li>
+																																																																																																																																																																																																										</ul>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="sort-type v-center">
+			<a class="tab fs_16 fw_300 c_b_9 select v-center" href="javascript:;">热门</a>
+			<i class="slash-icon v-center fs_16">/</i>
+			<a class="tab fs_16 fw_300 c_b_9  v-center" href="http://www.xinpianchang.com/channel/index/id-0/sort-addtime/type-0">最新</a>
+			<i class="slash-icon v-center fs_16">/</i>
+						<a class="tab fs_16 fw_300 c_b_9  v-center" href="http://www.xinpianchang.com/channel/index/id-0/sort-pick/type-0">精选</a>
+					</div>
+	</div>
+	<div class="channel-con">
+		<ul class="video-list">
+            {%for post in posts%}
+            <li class="enter-filmplay" data-articleid="{{post.pid}}" data-videourl="ArticleList">
 				<a class="video-cover" href="javascript:;">
 					<img class="lazy-img" _src="{{post.thumbnail}}">
-					<span class="duration fs_12">10' 19''</span>
+					<span class="duration fs_12">02' 00''</span>
 					<div class="video-cover-con">
 						<div class="video-mark">
-														<span class="pick vmovier"><svg width="24" height="24" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="web切片" transform="translate(-836.000000, -489.000000)"><g id="Group-4-Copy-3" transform="translate(836.000000, 489.000000)"><path d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z" id="Oval" fill="#000000" fill-rule="nonzero"></path><path d="M48.862785,35.7141055 L50.4894847,39.0387973 L53.585081,37.7817071 C52.9140489,39.6724171 52.0276967,41.4616319 50.9304486,43.1116534 L47.7979825,43.3668412 L47.3658673,39.1170935 C47.9720084,38.0412447 48.4704893,36.901599 48.862785,35.7141055 Z M12.6336902,39.1165136 L12.2015751,43.3677112 L9.06910893,43.1110734 C7.97333569,41.461052 7.08550866,39.6732871 6.41447659,37.7811271 L9.51154765,39.0382173 L11.1367726,35.7135255 C11.5290682,36.9024689 12.029024,38.0421147 12.6336902,39.1165136 Z M10.4950889,33.1767263 L8.67519099,37.0103438 L5.75067103,35.5749121 C5.28168599,33.7016013 5.00589918,31.754344 5,29.73749 L7.53959827,32.0211313 L10.1824322,29.2140649 C10.1780078,29.3677576 10.1573607,29.5171005 10.1573607,29.6707932 C10.1573607,30.8684362 10.2841931,32.0385305 10.4950889,33.1767263 Z M17.3418282,11.25 L15.653187,14.5949908 L11.862962,16.4132042 L13.0590213,12.8173754 L17.3418282,11.25 Z M12.2766422,20.9208947 L8.48051795,22.9015004 L6.94378079,20.1379319 C7.72247294,18.3153687 8.7386072,16.6174995 9.916969,15.0486742 L10.5762027,18.3168186 L14.5419284,17.4323607 C13.664425,18.5067596 12.9108044,19.6783038 12.2766422,20.9208947 Z M10.3769578,26.9252039 L7.41704274,29.9323607 L5.09866384,27.6951172 C5.25351739,25.7725087 5.62074153,23.9107973 6.19886146,22.1389817 L7.94207002,24.8764514 L11.3341002,23.0930363 C10.8901867,24.3196779 10.5672064,25.5999669 10.3769578,26.9252039 Z M13.9343126,41.1074138 C14.8250892,42.321006 15.8530219,43.4287533 16.9974634,44.4103566 L17.4782468,48.1888767 L14.1997758,48.75 C12.754476,47.5857054 11.4581305,46.2546688 10.3092647,44.8061877 L13.5316934,44.8902837 L13.9343126,41.1074138 Z M52.4604017,32.0212763 L55,29.737635 C54.9941008,31.7530391 54.718314,33.7017463 54.249329,35.5750571 L51.324809,37.0090389 L49.5049111,33.1768713 C49.7158069,32.0386755 49.8426393,30.8685812 49.8426393,29.6694882 C49.8426393,29.5157955 49.8219922,29.3664527 49.8175678,29.2142099 L52.4604017,32.0212763 Z M47.7235053,20.9208947 C47.0893431,19.6783038 46.3357225,18.5067596 45.458219,17.4323607 L49.4239448,18.3168186 L50.0831785,15.0486742 C51.2615403,16.6174995 52.2776745,18.3153687 53.0563667,20.1379319 L51.5196295,22.9015004 L47.7235053,20.9208947 Z M48.6654573,23.0937612 L52.0589623,24.8771763 L53.8006961,22.1382567 C54.378816,23.9100724 54.7460402,25.7732337 54.9023685,27.6943922 L52.5825148,29.9316358 L49.6225998,26.9259288 C49.4338259,25.6006919 49.1108456,24.3204028 48.6654573,23.0937612 Z M48.1368905,16.4132042 L44.3466655,14.5949908 L42.6580244,11.25 L46.9408312,12.8173754 L48.1368905,16.4132042 Z M46.0658349,41.1074138 L46.4684541,44.8902837 L49.6908828,44.8061877 C48.5420169,46.2546688 47.2456715,47.5857054 45.8003716,48.75 L42.5219007,48.1888767 L43.0026841,44.4103566 C44.1471256,43.4287533 45.1750583,42.321006 46.0658349,41.1074138 Z" id="Combined-Shape" fill="#FFFFFF"></path><path d="M37.7960982,22.5 L29.9999537,34.9738024 L22.2038555,22.5 L17.5,22.5 L29.9999537,42.5 L42.5,22.5 L37.7960982,22.5 Z M25.0469112,22.5 L29.9798132,30.3926471 L34.9127151,22.5 L25.0469112,22.5 Z" id="Page-1" fill="#FFFFFF"></path></g></g></g></svg></span>
-														<div class="list-tags">
-																							</div>
+                            <span class="pick square"><svg width="24" height="24" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="web切片" transform="translate(-911.000000, -490.000000)"><g id="Group" transform="translate(911.000000, 490.000000)"><circle id="Oval-8" fill="#000000" cx="30" cy="30" r="30"></circle><polygon id="Rectangle-7-Copy" fill="#F7F7F7" points="21.5625 17.8125 38.4375 17.8125 38.4375 42.1875 30 35.5397727 21.5625 42.1875"></polygon></g></g></g></svg></span>
+                            <div class="list-tags"></div>
 						</div>
 						<p class="fs_12">{{post.category}}</p>
 					</div>
 					<div class="video-hover-con">
-						<div class="fs_12 fw_300 c_w_f desc line-hide-3">{{post.description}}</div>
-						<p class="fs_12">{{post.created_at}}</p>
+						<div class="fs_12 fw_300 c_w_f desc line-hide-3">Joe-Composers作曲/演唱作品</div>
+						<p class="fs_12">{{post.created_at}} 发布</p>
 					</div>
 				</a>
 				<div class="video-con">
 					<a href="javascript:;">
-						<p class="fs_14 fw_600 c_b_3 line-hide-1">{{post.title}}}</p>
+						<p class="fs_14 fw_600 c_b_3 line-hide-1">{{post.title}}</p>
 					</a>
-					<div class="video-view fs_12 fw_300 c_b_9"><span class="type">播放</span><span class="fw_600">{{post.play_counts}}</span><span class="i-icon v-center"></span><span class="type">喜欢</span><span class="fw_600">{{post.like_counts}}</span></div>
+					<div class="video-view fs_12 fw_300 c_b_9">
+                        <span class="type">播放</span>
+                        <span class="fw_600">{{post.play_counts}}</span>
+                        <span class="i-icon v-center"></span>
+                        <span class="type">喜欢</span><span class="fw_600">{{post.like_counts}}</span>
+                    </div>
 					<div class="user-info">
-						<a class="user-link v-center no-creator-space" href="javascript:;" data-userid="10029931">
-							<span class="authors-head-wrap" data-userid="10029931">
-	
-																	
-									
-																			<img class="quarter quarter-t-l" src="https://cs.xinpianchang.com/Upload/user/2017/10/2259ec0a3ed1574.jpeg@40w_40h_1e_1c" alt="">
-										<img class="quarter quarter-t-r" src="https://cs.xinpianchang.com/uploadfile/user/2017/06/03/5931b5c90764a.jpeg@40w_40h_1e_1c" alt="">
-										<img class="quarter quarter-b-l" src="https://cs.xinpianchang.com/Upload/user/2017/10/2359ed8ef2d5ea3.jpeg@40w_40h_1e_1c" alt="">
-										<img class="quarter quarter-b-r" src="https://oss-xpc0.xpccdn.com/Upload/user/2017/10/2959f5b17b95505.jpeg" alt="">
-										
-									
+						<a class="user-link v-center enter-creator-space" href="javascript:;" data-userid="{{post.composers.0.cid}}">
+                            {% if post.composers|length > 1 %}
+                                <span class="authors-head-wrap" data-userid="{{post.composers.0.cid}}">
+                                {% for composer in post.composers %}
+                                    <img class="avator v-center" src="{{composer.avatar}}">
+                                    <span class="author-v {{composer.verified}}"></span>
+                                {% endfor %}
+							    </span>
+							    <span class="name fs_12 fw_300 c_b_3 v-center line-hide-1">
+                                    {{post.composers|length}}位创作人 /{{post.composers.0.role}}
+                                </span>
+                            {% else %}
+                                <span class="head-wrap" data-userid="{{post.composers.0.cid}}">
+                                    <img class="avator v-center" src="{{post.composers.0.avatar}}">
 
-								
-								
-							</span>
-							<span class="name fs_12 fw_300 c_b_3 v-center line-hide-1">
-																	4位创作人							</span>
+                                </span>
+                                <span class="name fs_12 fw_300 c_b_3 v-center line-hide-1">
+                                    {{post.composers.0.name}}/{{post.composers.0.role}}
+                                    </span>
+                            {% endif %}
 						</a>
-						<span class="role fs_12 fw_300 c_b_9 v-center line-hide-1">剪辑</span>
-						<!--  -->
-												<div class="authors-wrap">
+
+                        {% if post.composers|length > 1 %}
+                        <div class="authors-wrap">
 							<ul class="authors-list">
-																<li class="head-wrap" data-userid="10029931">
-									<a href="/u10029931" target="_blank">
+                                {% for composer in post.composers %}
+                                <li class="head-wrap" data-userid="{{composer.cid}}">
+									<a href="/u{{composer.cid}}" target="_blank">
 										<span class="avator-wrap">
-											<img class="avator" src="https://cs.xinpianchang.com/Upload/user/2017/10/2259ec0a3ed1574.jpeg@40w_40h_1e_1c" alt="">
-																						<span class="author-v yellow-v"></span>
-																					</span>
+											<img class="avator" src="{{composer.avatar}}" alt="">
+                                            <span class="author-v {{composer.verified}}"></span>
+                                        </span>
 										<div class="info">
-											<p class="name fs_12 fw_300 c_b_3 line-hide-1">苏三炮</p>
-											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">剪辑</div>
+											<p class="name fs_12 fw_300 c_b_3 line-hide-1">{{composer.name}}</p>
+											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">{{composer.role}}</div>
 										</div>
 									</a>
 								</li>
-																<li class="head-wrap" data-userid="10003086">
-									<a href="/u10003086" target="_blank">
-										<span class="avator-wrap">
-											<img class="avator" src="https://cs.xinpianchang.com/uploadfile/user/2017/06/03/5931b5c90764a.jpeg@40w_40h_1e_1c" alt="">
-																						<span class="author-v yellow-v"></span>
-																					</span>
-										<div class="info">
-											<p class="name fs_12 fw_300 c_b_3 line-hide-1">KatLeung</p>
-											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">调色</div>
-										</div>
-									</a>
-								</li>
-																<li class="head-wrap" data-userid="10125941">
-									<a href="/u10125941" target="_blank">
-										<span class="avator-wrap">
-											<img class="avator" src="https://cs.xinpianchang.com/Upload/user/2017/10/2359ed8ef2d5ea3.jpeg@40w_40h_1e_1c" alt="">
-																						<span class="author-v yellow-v"></span>
-																					</span>
-										<div class="info">
-											<p class="name fs_12 fw_300 c_b_3 line-hide-1">沈煜杰</p>
-											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">导演</div>
-										</div>
-									</a>
-								</li>
-																<li class="head-wrap" data-userid="10134690">
-									<a href="/u10134690" target="_blank">
-										<span class="avator-wrap">
-											<img class="avator" src="https://oss-xpc0.xpccdn.com/Upload/user/2017/10/2959f5b17b95505.jpeg" alt="">
-																						<span class="author-v yellow-v"></span>
-																					</span>
-										<div class="info">
-											<p class="name fs_12 fw_300 c_b_3 line-hide-1">宋泯锂，方竹</p>
-											<div class="roles fs_12 fw_300 c_b_9 line-hide-1">执行制片</div>
-										</div>
-									</a>
-								</li>
-															</ul>
+                                {% endfor %}
+                            </ul>
 						</div>
-											</div>
+                        {% endif %}
+
+						<span class="role fs_12 fw_300 c_b_9 v-center line-hide-1">声音设计</span>
+                    </div>
 				</div>
 			</li>
- 
             {% endfor %}
         </ul>
-        <div class="page-wrap">
-            <div class="page"> <span class="current">1</span> <a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-2">2</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-3">3</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-4">4</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-5">5</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-6">6</a>  <span class="page-points">...</span>  <a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-1987" title="尾页">1987</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-2" title="下一页"><span class="arrow-page icon-arrow-right"></span></a></div>
-        </div>
-    </div>
+		<div class="page-wrap">
+			<div class="page"> <span class="current">1</span> <a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-2">2</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-3">3</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-4">4</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-5">5</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-6">6</a>  <span class="page-points">...</span>  <a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-2572" title="尾页">2572</a><a href="http://www.xinpianchang.com/channel/index/type-0/sort-like/page-2" title="下一页"><span class="arrow-page icon-arrow-right"></span></a></div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
-    var curCateid = '0',
-        site_url = 'http://www.xinpianchang.com/',
-        sort = 'like';
-    $(function() {
-        var 
-            type2Timer = null,
-            _articleTypeElem = $(".type-1.article-type"),
-            _articleTypeBtn = $(".type-1 .article-type-btn"),
-            _articleTypeElemChild = _articleTypeElem.find(".type-child");
+	var curCateid = '0',
+		site_url = 'http://www.xinpianchang.com/',
+		sort = 'like';
 
-        _articleTypeElem.on("click",function() {
-            if (!_articleTypeElem.hasClass("open")) {
-                _articleTypeElem.addClass("open");
-                _articleTypeElemChild.addClass('visible')
+	stat.track("articleListPageView", {
+		articleListPageFrom: pageFrom,
+		articleListChannel: $(".article-type-btn").text().trim(),
+		articleListSortWay: $(".sort-type .select").text().trim()
 
-            } else {
-                _articleTypeElem.removeClass("open");
-                _articleTypeElemChild.removeClass('visible');
-            }
 
-        });
+	});
 
-        $(document).on("click", function(e) {
-            if (!$(e.target).closest(".article-type").length) {
-                _articleTypeElem.removeClass("open");
-                _articleTypeElemChild.removeClass('visible');
-                $(".hovered").removeClass("hovered");
-            }
-        })
+	$(function() {
+		var
+			type2Timer = null,
+			_articleTypeElem = $(".type-1.article-type"),
+			_articleTypeBtn = $(".type-1 .article-type-btn"),
+			_articleTypeElemChild = _articleTypeElem.find(".type-child");
 
-        var _fcateLiElem = $(".type-2-list > li"),
-            _cateWrapElem = _fcateLiElem.closest(".type-child").find(".type-3-list-wrap");
+		_articleTypeElem.on("click",function() {
+			if (!_articleTypeElem.hasClass("open")) {
+				_articleTypeElem.addClass("open");
+				_articleTypeElemChild.addClass('visible')
 
-        var hoverTimer = null;
-        var fcateLiTimer = null;
-        _fcateLiElem.hover(function() {
-            // var _this = $(this);
-            
+			} else {
+				_articleTypeElem.removeClass("open");
+				_articleTypeElemChild.removeClass('visible');
+			}
 
-        }, function() {
-            var _this = $(this);
-            type2Timer = setTimeout(function() {
-                _articleTypeElemChild.removeClass("open");
-            }, 100);
+		});
 
-            hoverTimer = setTimeout(function() {
-                _this.removeClass("hovered");
-            }, 100);
-        });
+		$(document).on("click", function(e) {
+			if (!$(e.target).closest(".article-type").length) {
+				_articleTypeElem.removeClass("open");
+				_articleTypeElemChild.removeClass('visible');
+				$(".hovered").removeClass("hovered");
+			}
+		})
 
-        _cateWrapElem.hover(function() {
-            var _this = $(this);
-            myClearTimeout(fcateLiTimer, type2Timer, hoverTimer);
-        }, function() {
-            type2Timer = setTimeout(function() {
-                _articleTypeElemChild.removeClass("open");
-            }, 100);
-            $(".hovered").removeClass("hovered");
+		var _fcateLiElem = $(".type-2-list > li"),
+			_cateWrapElem = _fcateLiElem.closest(".type-child").find(".type-3-list-wrap");
 
-        });
+		var hoverTimer = null;
+		var fcateLiTimer = null;
+		_fcateLiElem.hover(function() {
+			// var _this = $(this);
 
-        var cateid, 
-            site_url = 'http://www.xinpianchang.com/',
-            hoverWrap = $(".hover-wrap"),
-            cateListElem = $(".type-3-creator");
 
-        var jsonCates = JSON.parse('[{"catename":"\u5e7f\u544a\/\u5ba3\u4f20\u7247","cateid":"2","2":[{"cateid":"36","catename":"\u7535\u89c6\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"7054","views":"106313","fid":"2"},{"cateid":"38","catename":"\u7f51\u7edc\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"11667","views":"101764","fid":"2"},{"cateid":"40","catename":"\u75c5\u6bd2\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"1989","views":"63375","fid":"2"},{"cateid":"44","catename":"\u4f01\u4e1a\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"7959","views":"345475","fid":"2"},{"cateid":"47","catename":"\u4ea7\u54c1\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"6207","views":"177305","fid":"2"},{"cateid":"50","catename":"\u57ce\u5e02\u56fd\u5bb6\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"2613","views":"87758","fid":"2"},{"cateid":"53","catename":"\u6d3b\u52a8\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"3459","views":"52888","fid":"2"},{"cateid":"89","catename":"\u516c\u76ca\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"2155","views":"63427","fid":"2"}]},{"catename":"\u5267\u60c5\u77ed\u7247","cateid":"1","1":[{"cateid":"83","catename":"\u6587\u827a","orderid":"10","catedesc":"","banner":"0\/83.jpg","count_video":"2274","views":"36944","fid":"1"},{"cateid":"87","catename":"\u5947\u5e7b","orderid":"1","catedesc":"","banner":"","count_video":"474","views":"13222","fid":"1"},{"cateid":"15","catename":"\u559c\u5267","orderid":"0","catedesc":"","banner":"","count_video":"4546","views":"53701","fid":"1"},{"cateid":"16","catename":"\u52a8\u4f5c","orderid":"0","catedesc":"","banner":"","count_video":"871","views":"20312","fid":"1"},{"cateid":"17","catename":"\u7231\u60c5","orderid":"0","catedesc":"","banner":"","count_video":"5213","views":"68149","fid":"1"},{"cateid":"18","catename":"\u79d1\u5e7b","orderid":"0","catedesc":"","banner":"","count_video":"610","views":"17210","fid":"1"},{"cateid":"19","catename":"\u60ac\u7591","orderid":"0","catedesc":"","banner":"0\/19.jpg","count_video":"3667","views":"50340","fid":"1"},{"cateid":"20","catename":"\u60ca\u609a","orderid":"0","catedesc":"","banner":"","count_video":"1233","views":"27546","fid":"1"},{"cateid":"21","catename":"\u60c5\u8272","orderid":"0","catedesc":"","banner":"","count_video":"71","views":"12401","fid":"1"},{"cateid":"23","catename":"\u5bb6\u5ead","orderid":"0","catedesc":"","banner":"","count_video":"1835","views":"29983","fid":"1"},{"cateid":"24","catename":"\u513f\u7ae5","orderid":"0","catedesc":"","banner":"","count_video":"607","views":"16654","fid":"1"},{"cateid":"30","catename":"\u4eba\u751f","orderid":"0","catedesc":"","banner":"","count_video":"2292","views":"30330","fid":"1"},{"cateid":"33","catename":"\u6218\u4e89","orderid":"0","catedesc":"","banner":"","count_video":"148","views":"7769","fid":"1"},{"cateid":"49","catename":"\u4f53\u80b2","orderid":"0","catedesc":"","banner":"","count_video":"136","views":"5241","fid":"1"},{"cateid":"57","catename":"\u5176\u4ed6","orderid":"0","catedesc":"","banner":"","count_video":"1442","views":"18451","fid":"1"},{"cateid":"81","catename":"\u9752\u6625","orderid":"0","catedesc":"","banner":"","count_video":"1826","views":"35019","fid":"1"},{"cateid":"82","catename":"\u52b1\u5fd7","orderid":"0","catedesc":"","banner":"","count_video":"2092","views":"41217","fid":"1"}]},{"catename":"\u7f51\u7edc\u7535\u5f71","cateid":"121","121":[{"cateid":"122","catename":"\u7f51\u7edc\u7535\u5f71","orderid":"0","catedesc":"","banner":"","count_video":"1318","views":"5541","fid":"121"}]},{"catename":"\u521b\u610f\/\u5b9e\u9a8c","cateid":"13","13":[{"cateid":"72","catename":"\u521b\u610f","orderid":"2","catedesc":"","banner":"","count_video":"4627","views":"50343","fid":"13"},{"cateid":"73","catename":"\u5b9e\u9a8c\u7247","orderid":"1","catedesc":"","banner":"","count_video":"2818","views":"29133","fid":"13"}]},{"catename":"\u7eaa\u5f55\u7247","cateid":"11","11":[{"cateid":"31","catename":"\u5a5a\u793c","orderid":"120","catedesc":"","banner":"","count_video":"567","views":"13359","fid":"11"},{"cateid":"28","catename":"\u65c5\u884c","orderid":"110","catedesc":"","banner":"","count_video":"3294","views":"41914","fid":"11"},{"cateid":"34","catename":"\u7231\u60c5","orderid":"100","catedesc":"","banner":"","count_video":"182","views":"7318","fid":"11"},{"cateid":"37","catename":"\u68a6\u60f3","orderid":"90","catedesc":"","banner":"","count_video":"1130","views":"18523","fid":"11"},{"cateid":"42","catename":"\u52b1\u5fd7","orderid":"80","catedesc":"","banner":"","count_video":"1247","views":"22656","fid":"11"},{"cateid":"54","catename":"\u4eb2\u60c5","orderid":"20","catedesc":"","banner":"","count_video":"510","views":"10248","fid":"11"},{"cateid":"45","catename":"\u6d3b\u52a8","orderid":"18","catedesc":"","banner":"","count_video":"1197","views":"14335","fid":"11"},{"cateid":"48","catename":"\u81ea\u7136","orderid":"15","catedesc":"","banner":"","count_video":"924","views":"14738","fid":"11"},{"cateid":"86","catename":"\u793e\u4f1a","orderid":"12","catedesc":"","banner":"","count_video":"3248","views":"39720","fid":"11"},{"cateid":"56","catename":"\u5176\u4ed6","orderid":"10","catedesc":"","banner":"","count_video":"2229","views":"18457","fid":"11"}]},{"catename":"MV","cateid":"3","3":[{"cateid":"55","catename":"\u771f\u4ebaMV","orderid":"20","catedesc":"","banner":"","count_video":"10078","views":"60584","fid":"3"},{"cateid":"84","catename":"\u52a8\u753bMV","orderid":"0","catedesc":"","banner":"","count_video":"435","views":"8671","fid":"3"}]},{"catename":"\u6df7\u526a\/\u914d\u97f3","cateid":"10","10":[{"cateid":"59","catename":"\u6df7\u526a","orderid":"0","catedesc":"","banner":"","count_video":"4671","views":"41203","fid":"10"},{"cateid":"65","catename":"\u914d\u97f3","orderid":"0","catedesc":"","banner":"","count_video":"346","views":"7447","fid":"10"}]},{"catename":"\u7279\u6b8a\u6444\u5f71","cateid":"12","12":[{"cateid":"58","catename":"\u9ad8\u901f","orderid":"0","catedesc":"","banner":"","count_video":"53","views":"4932","fid":"12"},{"cateid":"60","catename":"\u5ef6\u65f6","orderid":"0","catedesc":"","banner":"","count_video":"1742","views":"31041","fid":"12"},{"cateid":"61","catename":"\u79fb\u8f74","orderid":"0","catedesc":"","banner":"","count_video":"24","views":"4552","fid":"12"},{"cateid":"63","catename":"\u6c34\u4e0b","orderid":"0","catedesc":"","banner":"","count_video":"19","views":"3361","fid":"12"},{"cateid":"64","catename":"\u822a\u62cd","orderid":"0","catedesc":"","banner":"","count_video":"891","views":"16043","fid":"12"},{"cateid":"66","catename":"\u5fae\u8ddd","orderid":"0","catedesc":"","banner":"","count_video":"20","views":"3791","fid":"12"},{"cateid":"68","catename":"\u5176\u4ed6","orderid":"0","catedesc":"","banner":"","count_video":"519","views":"7120","fid":"12"}]},{"catename":"\u680f\u76ee\/\u7f51\u5267","cateid":"7","7":[{"cateid":"62","catename":"\u680f\u76ee","orderid":"0","catedesc":"","banner":"","count_video":"6102","views":"28520","fid":"7"},{"cateid":"67","catename":"\u7f51\u5267","orderid":"0","catedesc":"","banner":"","count_video":"2118","views":"22989","fid":"7"},{"cateid":"88","catename":"\u7cfb\u5217","orderid":"0","catedesc":"","banner":"","count_video":"3781","views":"26147","fid":"7"}]},{"catename":"\u52a8\u753b","cateid":"5","5":[{"cateid":"22","catename":"\u4e8c\u7ef4\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"2267","views":"34491","fid":"5"},{"cateid":"25","catename":"\u4e09\u7ef4\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"1311","views":"23966","fid":"5"},{"cateid":"27","catename":"Motion Graphics","orderid":"0","catedesc":"","banner":"","count_video":"1328","views":"37189","fid":"5"},{"cateid":"29","catename":"\u5b9a\u683c\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"509","views":"16543","fid":"5"},{"cateid":"32","catename":"\u5305\u88c5\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"330","views":"11638","fid":"5"}]},{"catename":"\u9884\u544a\u7247\/\u82b1\u7d6e","cateid":"9","9":[{"cateid":"69","catename":"\u9884\u544a\u7247","orderid":"0","catedesc":"","banner":"","count_video":"4365","views":"33239","fid":"9"},{"cateid":"70","catename":"\u82b1\u7d6e","orderid":"0","catedesc":"","banner":"","count_video":"2522","views":"23454","fid":"9"},{"cateid":"71","catename":"\u5e55\u540e\u5236\u4f5c","orderid":"0","catedesc":"","banner":"","count_video":"610","views":"14245","fid":"9"}]}]');
-        jsonCates.forEach(function(val, key) {
-            if (val[val.cateid] && val[val.cateid].length) {
-                $(".type-2-list li").eq(key + 1).addClass("more");
-            }
-        });
+		}, function() {
+			var _this = $(this);
+			type2Timer = setTimeout(function() {
+				_articleTypeElemChild.removeClass("open");
+			}, 100);
 
-        $("[data-type='cate']").mouseenter(function() {
-            var _this = $(this);
-            myClearTimeout(type2Timer, fcateLiTimer, hoverTimer);
-            fcateLiTimer = setTimeout(function() {
-                _this.addClass("hovered").siblings().removeClass("hovered");
-                cateListElem.html("");
+			hoverTimer = setTimeout(function() {
+				_this.removeClass("hovered");
+			}, 100);
+		});
 
-                var cateid = _this.data("id"),
-                    allLiStr = '';
+		_cateWrapElem.hover(function() {
+			var _this = $(this);
+			myClearTimeout(fcateLiTimer, type2Timer, hoverTimer);
+		}, function() {
+			type2Timer = setTimeout(function() {
+				_articleTypeElemChild.removeClass("open");
+			}, 100);
+			$(".hovered").removeClass("hovered");
 
-                if (_this.hasClass("more")) { 
-                    _articleTypeElemChild.addClass("open");
-                    jsonCates.forEach(function(val, key) {
-                        if (cateid == val.cateid) {
-                            allLiStr += '<li data-type="cate2" data-id="0" data-fid="'+ cateid +'"><a class=" fs_12 fw_300 c_b_3" href="'+ site_url +'channel/index/id-'+ val.cateid +'/sort-'+ sort +'">全部</a></li>';
-                            val[val.cateid].forEach(function(v, k) {
-                                allLiStr += '<li data-type="cate2" data-id="'+ v.cateid +'"><a class="fs_12 fw_300 c_b_3" href="'+ site_url +'channel/index/id-'+ v.cateid +'/sort-'+ (sort == 'pick' ? 'vmovier' : sort) +'">'+ v.catename +'</a></li>';
-                            });
-                        }
-                    });
+		});
 
-                } else { 
-                    _articleTypeElemChild.removeClass("open");
-                }
-                cateListElem.html(allLiStr);
+		var cateid,
+			site_url = 'http://www.xinpianchang.com/',
+			hoverWrap = $(".hover-wrap"),
+			cateListElem = $(".type-3-creator");
 
-            }, 300);
-            
-        });
+		var jsonCates = JSON.parse('[{"catename":"\u5e7f\u544a\/\u5ba3\u4f20\u7247","cateid":"2","2":[{"cateid":"36","catename":"\u7535\u89c6\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"9775","views":"124985","fid":"2"},{"cateid":"38","catename":"\u7f51\u7edc\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"17026","views":"116421","fid":"2"},{"cateid":"40","catename":"\u75c5\u6bd2\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"2603","views":"72561","fid":"2"},{"cateid":"44","catename":"\u4f01\u4e1a\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"11409","views":"397246","fid":"2"},{"cateid":"47","catename":"\u4ea7\u54c1\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"8837","views":"208032","fid":"2"},{"cateid":"50","catename":"\u57ce\u5e02\u56fd\u5bb6\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"3851","views":"101193","fid":"2"},{"cateid":"53","catename":"\u6d3b\u52a8\u5ba3\u4f20\u7247","orderid":"0","catedesc":"","banner":"","count_video":"5076","views":"60701","fid":"2"},{"cateid":"89","catename":"\u516c\u76ca\u5e7f\u544a","orderid":"0","catedesc":"","banner":"","count_video":"2818","views":"73326","fid":"2"}]},{"catename":"\u5267\u60c5\u77ed\u7247","cateid":"1","1":[{"cateid":"83","catename":"\u6587\u827a","orderid":"10","catedesc":"","banner":"0\/83.jpg","count_video":"2714","views":"43125","fid":"1"},{"cateid":"87","catename":"\u5947\u5e7b","orderid":"1","catedesc":"","banner":"","count_video":"567","views":"14829","fid":"1"},{"cateid":"15","catename":"\u559c\u5267","orderid":"0","catedesc":"","banner":"","count_video":"5414","views":"59456","fid":"1"},{"cateid":"16","catename":"\u52a8\u4f5c","orderid":"0","catedesc":"","banner":"","count_video":"1005","views":"22449","fid":"1"},{"cateid":"17","catename":"\u7231\u60c5","orderid":"0","catedesc":"","banner":"","count_video":"6436","views":"76701","fid":"1"},{"cateid":"18","catename":"\u79d1\u5e7b","orderid":"0","catedesc":"","banner":"","count_video":"669","views":"19229","fid":"1"},{"cateid":"19","catename":"\u60ac\u7591","orderid":"0","catedesc":"","banner":"0\/19.jpg","count_video":"4128","views":"55043","fid":"1"},{"cateid":"20","catename":"\u60ca\u609a","orderid":"0","catedesc":"","banner":"","count_video":"1358","views":"30740","fid":"1"},{"cateid":"21","catename":"\u60c5\u8272","orderid":"0","catedesc":"","banner":"","count_video":"90","views":"13572","fid":"1"},{"cateid":"23","catename":"\u5bb6\u5ead","orderid":"0","catedesc":"","banner":"","count_video":"2241","views":"33705","fid":"1"},{"cateid":"24","catename":"\u513f\u7ae5","orderid":"0","catedesc":"","banner":"","count_video":"738","views":"18343","fid":"1"},{"cateid":"30","catename":"\u4eba\u751f","orderid":"0","catedesc":"","banner":"","count_video":"2700","views":"34012","fid":"1"},{"cateid":"33","catename":"\u6218\u4e89","orderid":"0","catedesc":"","banner":"","count_video":"166","views":"8706","fid":"1"},{"cateid":"49","catename":"\u4f53\u80b2","orderid":"0","catedesc":"","banner":"","count_video":"156","views":"6343","fid":"1"},{"cateid":"57","catename":"\u5176\u4ed6","orderid":"0","catedesc":"","banner":"","count_video":"1790","views":"20550","fid":"1"},{"cateid":"81","catename":"\u9752\u6625","orderid":"0","catedesc":"","banner":"","count_video":"2138","views":"38891","fid":"1"},{"cateid":"82","catename":"\u52b1\u5fd7","orderid":"0","catedesc":"","banner":"","count_video":"2543","views":"46032","fid":"1"}]},{"catename":"\u7f51\u7edc\u7535\u5f71","cateid":"121","121":[{"cateid":"122","catename":"\u7f51\u7edc\u7535\u5f71","orderid":"0","catedesc":"","banner":"","count_video":"1605","views":"7580","fid":"121"}]},{"catename":"\u521b\u610f\/\u5b9e\u9a8c","cateid":"13","13":[{"cateid":"72","catename":"\u521b\u610f","orderid":"2","catedesc":"","banner":"","count_video":"5661","views":"60558","fid":"13"},{"cateid":"73","catename":"\u5b9e\u9a8c\u7247","orderid":"1","catedesc":"","banner":"","count_video":"3536","views":"33211","fid":"13"}]},{"catename":"\u7eaa\u5f55\u7247","cateid":"11","11":[{"cateid":"31","catename":"\u5a5a\u793c","orderid":"120","catedesc":"","banner":"","count_video":"937","views":"16768","fid":"11"},{"cateid":"28","catename":"\u65c5\u884c","orderid":"110","catedesc":"","banner":"","count_video":"4322","views":"51643","fid":"11"},{"cateid":"34","catename":"\u7231\u60c5","orderid":"100","catedesc":"","banner":"","count_video":"248","views":"8623","fid":"11"},{"cateid":"37","catename":"\u68a6\u60f3","orderid":"90","catedesc":"","banner":"","count_video":"1482","views":"21719","fid":"11"},{"cateid":"42","catename":"\u52b1\u5fd7","orderid":"80","catedesc":"","banner":"","count_video":"1656","views":"26969","fid":"11"},{"cateid":"54","catename":"\u4eb2\u60c5","orderid":"20","catedesc":"","banner":"","count_video":"695","views":"11826","fid":"11"},{"cateid":"45","catename":"\u6d3b\u52a8","orderid":"18","catedesc":"","banner":"","count_video":"1774","views":"16994","fid":"11"},{"cateid":"48","catename":"\u81ea\u7136","orderid":"15","catedesc":"","banner":"","count_video":"1211","views":"17472","fid":"11"},{"cateid":"86","catename":"\u793e\u4f1a","orderid":"12","catedesc":"","banner":"","count_video":"4276","views":"45342","fid":"11"},{"cateid":"56","catename":"\u5176\u4ed6","orderid":"10","catedesc":"","banner":"","count_video":"2898","views":"21221","fid":"11"}]},{"catename":"MV","cateid":"3","3":[{"cateid":"55","catename":"\u771f\u4ebaMV","orderid":"20","catedesc":"","banner":"","count_video":"14726","views":"70564","fid":"3"},{"cateid":"84","catename":"\u52a8\u753bMV","orderid":"0","catedesc":"","banner":"","count_video":"549","views":"10066","fid":"3"}]},{"catename":"\u6df7\u526a\/\u914d\u97f3","cateid":"10","10":[{"cateid":"59","catename":"\u6df7\u526a","orderid":"0","catedesc":"","banner":"","count_video":"6196","views":"49360","fid":"10"},{"cateid":"65","catename":"\u914d\u97f3","orderid":"0","catedesc":"","banner":"","count_video":"453","views":"8434","fid":"10"}]},{"catename":"\u7279\u6b8a\u6444\u5f71","cateid":"12","12":[{"cateid":"58","catename":"\u9ad8\u901f","orderid":"0","catedesc":"","banner":"","count_video":"65","views":"5750","fid":"12"},{"cateid":"60","catename":"\u5ef6\u65f6","orderid":"0","catedesc":"","banner":"","count_video":"2235","views":"36581","fid":"12"},{"cateid":"61","catename":"\u79fb\u8f74","orderid":"0","catedesc":"","banner":"","count_video":"26","views":"5312","fid":"12"},{"cateid":"63","catename":"\u6c34\u4e0b","orderid":"0","catedesc":"","banner":"","count_video":"39","views":"3824","fid":"12"},{"cateid":"64","catename":"\u822a\u62cd","orderid":"0","catedesc":"","banner":"","count_video":"1179","views":"19330","fid":"12"},{"cateid":"66","catename":"\u5fae\u8ddd","orderid":"0","catedesc":"","banner":"","count_video":"24","views":"4430","fid":"12"},{"cateid":"68","catename":"\u5176\u4ed6","orderid":"0","catedesc":"","banner":"","count_video":"647","views":"8362","fid":"12"}]},{"catename":"\u680f\u76ee\/\u7f51\u5267","cateid":"7","7":[{"cateid":"62","catename":"\u680f\u76ee","orderid":"0","catedesc":"","banner":"","count_video":"7652","views":"32474","fid":"7"},{"cateid":"67","catename":"\u7f51\u5267","orderid":"0","catedesc":"","banner":"","count_video":"2251","views":"25087","fid":"7"},{"cateid":"88","catename":"\u7cfb\u5217","orderid":"0","catedesc":"","banner":"","count_video":"4617","views":"29183","fid":"7"}]},{"catename":"\u52a8\u753b","cateid":"5","5":[{"cateid":"22","catename":"\u4e8c\u7ef4\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"2638","views":"38253","fid":"5"},{"cateid":"25","catename":"\u4e09\u7ef4\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"1588","views":"28036","fid":"5"},{"cateid":"27","catename":"Motion Graphics","orderid":"0","catedesc":"","banner":"","count_video":"1780","views":"42319","fid":"5"},{"cateid":"29","catename":"\u5b9a\u683c\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"564","views":"18030","fid":"5"},{"cateid":"32","catename":"\u5305\u88c5\u52a8\u753b","orderid":"0","catedesc":"","banner":"","count_video":"417","views":"13410","fid":"5"}]},{"catename":"\u9884\u544a\u7247\/\u82b1\u7d6e","cateid":"9","9":[{"cateid":"69","catename":"\u9884\u544a\u7247","orderid":"0","catedesc":"","banner":"","count_video":"5796","views":"37923","fid":"9"},{"cateid":"70","catename":"\u82b1\u7d6e","orderid":"0","catedesc":"","banner":"","count_video":"3986","views":"26741","fid":"9"},{"cateid":"71","catename":"\u5e55\u540e\u5236\u4f5c","orderid":"0","catedesc":"","banner":"","count_video":"897","views":"16331","fid":"9"}]}]');
+		jsonCates.forEach(function(val, key) {
+			if (val[val.cateid] && val[val.cateid].length) {
+				$(".type-2-list li").eq(key + 1).addClass("more");
+			}
+		});
 
-    });
+		$("[data-type='cate']").mouseenter(function() {
+			var _this = $(this);
+			myClearTimeout(type2Timer, fcateLiTimer, hoverTimer);
+			fcateLiTimer = setTimeout(function() {
+				_this.addClass("hovered").siblings().removeClass("hovered");
+				cateListElem.html("");
+
+				var cateid = _this.data("id"),
+					allLiStr = '';
+
+				if (_this.hasClass("more")) {
+					_articleTypeElemChild.addClass("open");
+					jsonCates.forEach(function(val, key) {
+						if (cateid == val.cateid) {
+							allLiStr += '<li data-type="cate2" data-id="0" data-fid="'+ cateid +'"><a class=" fs_12 fw_300 c_b_3" href="'+ site_url +'channel/index/id-'+ val.cateid +'/sort-'+ sort +'">全部</a></li>';
+							val[val.cateid].forEach(function(v, k) {
+								allLiStr += '<li data-type="cate2" data-id="'+ v.cateid +'"><a class="fs_12 fw_300 c_b_3" href="'+ site_url +'channel/index/id-'+ v.cateid +'/sort-'+ (sort == 'pick' ? 'vmovier' : sort) +'">'+ v.catename +'</a></li>';
+							});
+						}
+					});
+
+				} else {
+					_articleTypeElemChild.removeClass("open");
+				}
+				cateListElem.html(allLiStr);
+
+			}, 300);
+
+		});
+
+	});
 </script>
 {% endblock %}

@@ -1,0 +1,27 @@
+{% for comment in comments%}
+<li data-totalpages="{{paginator.num_pages}}" data-totalcounts="{{paginator.count}}">
+    <a href="/u{{comment.cid}}" target="_blank">
+    <span class="head-wrap" data-userid="{{comment.cid}}">
+        <img class="user-avator" src="{{comment.avatar}}">
+    </span></a>
+    <div class="comment-wrap clearfix">
+        <div class="user-time">
+            <a href="/u{{comment.cid}}">
+                <span class="user-name fs_14 fw_600 c_b_3">{{comment.uname}}</span>
+            </a>
+            <span class="send-time fs_12 fw_300 c_w_87">{{comment.created_at}}</span>
+        </div>
+        <div class="comment-con fs_14 fw_300 c_b_26">{{comment.content|safe}}</div>
+        <div class="comment-btn fs_12 fw_600 c_b_9" data-replyid="{{comment.commentid}}">
+            <span class="relpy-btn">回复</span>
+            <span class="i-icon v-center"></span>
+            <span class="like-btn ">
+                <i class="approve-text">赞</i>&nbsp;
+                <i class="approve-counts">(
+                    <i class=counts>{{comment.like_counts}}</i>)
+                </i>
+            </span>
+        </div>
+    </div>
+</li>
+{% endfor %}
