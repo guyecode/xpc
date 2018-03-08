@@ -435,10 +435,10 @@
 						<div class="filmplay-recommend right-section">
 				<div>
 					<h3 class="fs_20 fw_600">创作人的其他作品</h3>
-					<a href="/u{{composer.cid}}" class="btn fs_12 fw_600 c_b_3">更多</a>
+					<a href="/u{{first_composer.cid}}" class="btn fs_12 fw_600 c_b_3">更多</a>
 				</div>
 				<ul class="recommend-list">
-                    {% for post in composer.posts %}
+                    {% for post in first_composer.posts %}
                     <li>
 						<a class="cover-wrap" target="_blank" href="http://www.xinpianchang.com/a{{post.pid}}?from=ArticlePageRecommand">
 							<img class="cover" src="{{post.thumbnail}}">
@@ -797,7 +797,7 @@
 	    document.execCommand("Copy"); //执行浏览器复制命令
 	} 
 
-	var authorid = '{{composer.cid}}',
+	var authorid = '{{first_composer.cid}}',
 		articleid = '{{post.pid}}';
 
 	$("#comment_content").focus(function() {

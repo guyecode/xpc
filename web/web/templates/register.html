@@ -1,0 +1,289 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册账号 - 新片场</title>
+
+    <link rel="stylesheet" href="https://passport.xinpianchang.com/css/common.css?v=1515157354">
+    <link rel="stylesheet" href="https://passport.xinpianchang.com/css/element-ui.css">
+    <script src="https://passport.xinpianchang.com/js/jquery-3.2.1.min.js"></script>
+    <script src="https://passport.xinpianchang.com/js/phone_reg.js?v=1510802494"></script>
+    <script src="https://passport.xinpianchang.com/js/common.js?v=1511094538"></script>
+    </head>
+<body>
+<!-- 用户中心 - 新片场 -->
+
+<!--     这是 master 的侧边栏。
+ -->
+
+
+<!-- <div class="top-notice dn">
+    <p>账户系统已全面升级，使用过程中遇到问题请联系微信客服：微信小助手 id：lovexinpianchang <i class="icon-close-cross top-notice-close"></i></p>
+</div> -->
+
+
+<div class="passport-ground">
+    <div class="ground-reconsitution clearfix">
+        <div class="ground-z">
+
+            <p>
+                                只需一个账号<br><span>即可畅享新片场的所有产品和服务</span><br>
+                <span class="logo-list">
+                    <a href="http://www.xinpianchang.com/"><span></span></a>
+                    <a href="http://www.vmovier.com/"><span></span></a>
+                </span>
+                            </p>
+
+
+        </div>
+
+        <div class="ground-y">
+            <!-- <p class="welcome mark">欢迎使用新片场服务</p> -->
+                <!-- <span>This is my body content.</span> -->
+    <span class="form-action">
+       <!--  <h4>注册新片场</h4> -->
+                <a href="http://www.xinpianchang.com/">
+                    <img class="title-logo" src="https://passport.xinpianchang.com/img/logo_2x.png" alt="">
+                </a>
+
+        <div class="action-item">
+            <input class="nickname" name="nickname" type="text" placeholder="昵称">
+            <p class="error-notice dn">这个昵称已经有人使用，换个昵称试试</p>
+        </div>
+
+        <div class="action-item" >
+
+            <link rel="stylesheet" href="https://passport.xinpianchang.com/css/flags.css?v=1499306837">
+<div class="image-preload"></div>
+<div class="phone-action"><span class="phone-select prefix_code" data-value="&#43;86">+86<i></i></span><input name="phone" type="text" placeholder="手机号" autocomplete="tel">
+    <ul class="phone-list dn">
+            <li class="cn" data-zone="+86"><i class="flag flag-cn"></i>China（中国大陆）+86</li>
+            <li class="hk" data-zone="+852"><i class="flag flag-hk"></i>Hong Kong（中国香港）+852</li>
+            <li class="mo" data-zone="+853"><i class="flag flag-mo"></i>Macau（中国澳门）+853</li>
+            <li class="tw" data-zone="+886"><i class="flag flag-tw"></i>Taiwan（中国台湾）+886</li>
+            <li class="us" data-zone="+1"><i class="flag flag-us"></i>United States（美国）+1</li>
+    </ul>
+
+</div>
+
+<script>
+
+    var _phoneSelect = $(".phone-select"),
+        _phoneList = $(".phone-list"),
+        _phoneListLi = $(".phone-list li");
+
+    _phoneSelect.on("click",function(e) {
+        if (_phoneList.hasClass("dn")) {
+            _phoneList.removeClass("dn");
+            fixLiFontSize(_phoneList);
+        } else {
+           _phoneList.addClass("dn");
+        }
+
+        return false;
+
+    })
+
+    // _phoneSelect.html("+86" + "<i></i>").data("value","+86");
+
+    _phoneListLi.on("click",function(){
+        var _this = $(this);
+
+        _phoneListLi.removeClass("select");
+        _this.addClass("select");
+        prefix_code = _this.attr("data-zone");
+        _phoneSelect.html(prefix_code + "<i></i>").attr("data-value",prefix_code);
+
+        _phoneList.addClass("dn");
+
+    })
+
+    $("body").on("click",function(event){
+
+        if(event.target.nodeName != "LI" && event.target.className != "phone-select prefix_code"){
+
+            _phoneList.addClass("dn");
+
+        }
+
+    })
+
+    function fixLiFontSize($ul) {
+        getWidth($ul, function(width) {
+            if (width) {
+                width = $ul.find("li").eq(0).outerWidth();
+                $ul.find("li").each(function() {
+                    autoFixFontsize(this, width);
+                });
+            }
+        });
+    }
+
+    function autoFixFontsize(li, width, liWidth, retry) {
+        var $li = $(li);
+
+        var w = $li.outerWidth();
+
+        retry = retry || 0;
+        retry++;
+        if (retry > 10) return;
+
+        if (!w || w == liWidth) {
+            return setTimeout(autoFixFontsize, 8, li, width, w, retry);
+        }
+
+        if (w <= width) return;
+
+        var size = parseInt($li.css('font-size'));
+        var newSize = Math.round(size * 9.5) / 10;
+        if (size > newSize) {
+            $li.css('font-size', newSize + 'px');
+            return setTimeout(autoFixFontsize, 8, li, width, w, retry);
+        }
+    }
+
+    function getWidth($el, cb, retry) {
+        var w = $el ? $el.width() : 0;
+        if (w > 0) {
+            cb(w);
+        } else {
+            retry = retry || 0;
+            retry++;
+            if (retry < 3) {
+                setTimeout(getWidth, 8, $el, cb, retry);
+            } else {
+                cb(0);
+            }
+        }
+    }
+
+</script>
+        </div>
+       <!--  <div class="action-item phone-action" >
+            <span class="phone-select">+86</span><input name="phone" type="text" placeholder="手机号">
+        </div> -->
+
+        <div class="action-item identifying-action" >
+            <input name="code" type="text" placeholder="手机验证码"><span class="identifying-achieve">获取验证码</span>
+        </div>
+
+        <div class="action-item">
+            <input name="password" type="password" placeholder="设置密码">
+        </div>
+        <div class="action-item dn">
+            <div class="callback" data-value="http%3A%2F%2Fwww.xinpianchang.com%2F">回调函数</div>
+       </div>
+
+        <div class="action-item">
+            <div class="submit-btn register" style="margin-bottom:15px;">注册</div>
+                        <p class="responsibility-notice">注册即表示您已同意新片场的 <a href="http://www.xinpianchang.com/aboutus/responsibility" target="_blank">责任声明</a></p>
+                    </div>
+
+
+
+        <div class="registered-notice">已经有新片场账号？<a href="/?callback=http%3A%2F%2Fwww.xinpianchang.com%2F">直接登录</a></div>
+
+    </span>
+
+    <script src="https://passport.xinpianchang.com/js/module/register.js?v=1508380132"></script>
+
+
+        </div>
+    </div>
+        <p class="copyright mark">© 2017 新片场 All rights reserved.</p>
+
+</div>
+
+<style>
+    /*.dialog-tip{position: absolute;color: #fff;z-index: 1000;opacity: 0;transition:all 1s;width: 100%;text-align: center;background-color: #e74b3b;height: 50px;line-height: 50px;transform:translateY(-50px);top:0;}
+    .dialog-tip .tip-content{padding-left: 18px;background: url(../img/error-notice@3x.png) no-repeat;background-position: left;background-size: 14px;}
+    .dialog-tip-show{opacity: 1;transform:translateY(0px);}*/
+</style>
+<div class="dialog-tip">
+
+    <span class="tip-content">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浏览器版本过低，为了正常使用请升级浏览器，推荐使用Chrome浏览器</span>
+
+</div>
+
+<script>
+
+    /*var dialogTipCallback;
+
+
+    var _dialogTip = $(".dialog-tip");
+    function showDialogTip(obj,callback){
+        _dialogTip.addClass("dialog-tip-show");
+
+        $(".tip-content").text(obj.content);
+
+        setTimeout(function(){
+            _dialogTip.removeClass("dialog-tip-show");
+            (callback || function(){})()
+        },2000)
+
+        // dialogTipCallback = callback || function(){};
+
+    }*/
+
+    var noop = noop || function() {};
+    var templete = $(".dialog-tip");
+
+    function showDialogTip(obj, callback) {
+
+        callback = callback || noop;
+        //var type = obj.type || 'ERROR';
+        var content = obj.content || (obj + '');
+        var timeout = obj.timeout || 2500;
+
+        // 每次showDialogTip，都要clone一个tip的模板，让每一次吐司都是独立的调用
+        var tip = templete.clone().appendTo(document.body);
+        tip.find(".tip-content").text(content);
+
+        setTimeout(function() {
+
+            // appendTo body 之后，需要一点时间（20ms,至少经过一个animate looper）来使得css生效
+            // 然后再增加dialog-top-show，就能有css动画了
+
+            tip.addClass("dialog-tip-show tip-" + (obj.type ? obj.type : "")).css("z-index",1000);
+
+            setTimeout(function() {
+                // timeout 后开始消失css动画
+                tip.removeClass("dialog-tip-show");
+                setTimeout(function() {
+                    // 500ms css小时动画结束后，移出append的tip
+                    tip.remove();
+                }, 500);
+                callback();
+            }, timeout);
+        }, 20);
+
+
+    }
+
+    // $(".close-know,.close").on("click",function(){
+
+    //     _dialogTip.removeClass("opacity-1");
+    //     setTimeout(function(){
+    //         _dialogTip.addClass("dn");
+    //     },1000)
+    //     dialogTipCallback();
+    //     // _body.removeClass("ovh");
+    // })
+
+</script>
+<script>
+    // if(!localStorage.getItem("top-notice-close")){
+    //     $(".top-notice").removeClass("dn");
+    // }
+    // $(".top-notice-close").on("click",function(){
+    //     $(".top-notice").addClass("dn");
+    //     localStorage.setItem("top-notice-close",true);
+    // })
+    // $(".ground-reconsitution").height($(".form-action").height()).css({marginTop:""});
+</script>
+</body>
+</html>

@@ -1,14 +1,19 @@
-import pickle
-from web.helpers import r
+from django.core.cache import cache
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Model(object):
+
     @classmethod
     def get(cls, **kwargs):
         cache_key = '%s_%s' % (cls.__name__, next(iter(kwargs.values())))
-        post = r.get(cache_key)
-        if post:
-            return pickle.loads(post)
-        obj = cls.objects.get(**kwargs)
-        r.set(cache_key, pickle.dumps(obj))
+        obj = cache.get(cache_key)
+        if not obj:
+            try:
+                # obj = cls.objects.filter(**kwargs).first()
+                obj = cls.objects.get(**kwargs)
+            except ObjectDoesNotExist:
+                return None
+            if obj:
+                cache.set(cache_key, obj)
         return obj

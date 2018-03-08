@@ -22,6 +22,17 @@ from web.views import post, composer
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', post.show_list),
+    url(r'^register/', composer.register),
+    url(r'^login/', composer.login),
+    url(r'^api/v1/user/register', composer.do_register),
+    url(r'^api/v1/user/login', composer.do_login),
+    url(r'^api/v1/mobile/send', composer.send_code),
+    url(r'^user/login/ts-out', composer.logout),
+    url(r'^find_password', composer.find_password),
+    url(r'^api/v1/user/check/send', composer.check_send),
+    url(r'^api/v1/mobile/check/find', composer.mobile_check),
+    url(r'^api/v1/user/findPwd', composer.reset_pwd),
+
     url(r'^user/oneuser/userid-(?P<cid>\d+)$', composer.oneuser),
     url(r'^a(?P<pid>\d+)$', post.post_detail),
     url(r'^article/filmplay/ts-getCommentApi/$', post.get_comments),

@@ -1,7 +1,8 @@
 from django.db import models
+from web.models import Model
 
 
-class Comment(models.Model):
+class Comment(models.Model, Model):
     commentid = models.IntegerField(primary_key=True)
     pid = models.BigIntegerField()
     cid = models.BigIntegerField()

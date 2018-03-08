@@ -24,25 +24,14 @@ class Post(models.Model, Model):
         db_table = 'posts'
 
     def get_composers(self):
-        composers = []
         cache_key = 'cr_pid_%s' % self.pid
-        if r.exists(cache_key):
-            cr_list = [pickle.loads(i) for i in r.lrange(cache_key, 0, -1)]
-        else:
+        composers = [pickle.loads(i) for i in r.lrange(cache_key, 0, -1)]
+        if not composers:
             cr_list = Copyright.objects.filter(pid=self.pid).all()
-            r.lpush(cache_key, *[pickle.dumps(cr) for cr in cr_list])
-        for cr in cr_list:
-            composer = r.get('composer_%s' % cr.cid)
-            if composer:
-                composer = pickle.loads(composer)
-            else:
-                composer = Composer.objects.filter(cid=cr.cid).first()
-                r.set('composer_%s' % cr.cid, pickle.dumps(composer))
-            if composer:
-                composer.role = cr.roles
-                composers.append(composer)
+            for cr in cr_list:
+                composer = Composer.get(cid=cr.cid)
+                if composer:
+                    composer.role = cr.roles
+                    composers.append(composer)
+                    r.lpush(cache_key, pickle.dumps(composer))
         return composers
-
-    @property
-    def first_composer(self):
-        return self.composers[0]
