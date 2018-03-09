@@ -1,6 +1,7 @@
 pymysql
 django==1.11
-django_debug_toolbar
 redis
-celery
+python-memcached
 requests
+celery
+gunicorn
