@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `xpc`;
-USE `xpc`;
+-- CREATE DATABASE IF NOT EXISTS `xpc`;
+-- USE `xpc`;
 
 
 CREATE TABLE IF NOT EXISTS `posts` (
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `posts` (
 	`preview` VARCHAR(512) COMMENT '视频预览图',
 	`video` VARCHAR(512) COMMENT '视频链接',
 	`video_format` VARCHAR(32) COMMENT '视频格式：4K 等',
-	`duration` INT(8) NOT NULL DEFAULT 0 COMMENT '播放时长';
+	`duration` INT(8) NOT NULL DEFAULT 0 COMMENT '播放时长',
 	`category` VARCHAR(512) NOT NULL DEFAULT '' COMMENT '作品分类',
 	`created_at` VARCHAR(128) NOT NULL DEFAULT '' COMMENT '发表时间',
 	`description` text COMMENT '作品描述',

@@ -5,21 +5,19 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import json
 import scrapy
 from scrapy import Field
 
 
 class PostItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = Field()
+    """保存视频信息的item"""
+    table_name = 'posts'
     pid = Field()
     title = Field()
     thumbnail = Field()
     preview = Field()
     video = Field()
     video_format = Field()
-    duration = Field()
     category = Field()
     created_at = Field()
     play_counts = Field()
@@ -27,20 +25,8 @@ class PostItem(scrapy.Item):
     description = Field()
 
 
-class ComposerItem(scrapy.Item):
-    cid = Field()
-    banner = Field()
-    avatar = Field()
-    verified = Field()
-    name = Field()
-    intro = Field()
-    like_counts = Field()
-    fans_counts = Field()
-    follow_counts = Field()
-    location = Field()
-    career = Field()
-
 class CommentItem(scrapy.Item):
+    table_name = 'comments'
     commentid = Field()
     pid = Field()
     cid = Field()
@@ -52,7 +38,21 @@ class CommentItem(scrapy.Item):
     reply = Field()
 
 
+class ComposerItem(scrapy.Item):
+    table_name = 'composers'
+    cid = Field()
+    banner = Field()
+    avatar = Field()
+    verified = Field()
+    name = Field()
+    intro = Field()
+    like_counts = Field()
+    fans_counts = Field()
+    follow_counts = Field()
+
+
 class CopyrightItem(scrapy.Item):
+    table_name = 'copyrights'
     pcid = Field()
     pid = Field()
     cid = Field()
