@@ -4,53 +4,55 @@
 #
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
+import random
+from scrapy.exceptions import NotConfigured
+from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
 
-from scrapy import signals
 
+class RandomProxyMiddleware(object):
 
-class XpcSpiderMiddleware(object):
-    # Not all methods need to be defined. If a method is not defined,
-    # scrapy acts as if the spider middleware does not modify the
-    # passed objects.
+    def __init__(self, settings):
+        self.proxies = settings.getlist('PROXIES')
+        self.stats = {}.fromkeys(self.proxies, 0)
+        self.max_failed = 1
 
     @classmethod
     def from_crawler(cls, crawler):
-        # This method is used by Scrapy to create your spiders.
-        s = cls()
-        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
-        return s
+        if not crawler.settings.getbool('HTTPPROXY_ENABLED'):
+            raise NotConfigured
+        if not crawler.settings.getlist('PROXIES'):
+            raise NotConfigured
+        return cls(crawler.settings)
 
-    def process_spider_input(self, response, spider):
-        # Called for each response that goes through the spider
-        # middleware and into the spider.
+    def process_request(self, request, spider):
+        request.meta['proxy'] = random.choice(self.proxies)
+        print('use %s as proxy' % request.meta['proxy'])
 
-        # Should return None or raise an exception.
-        return None
+    def remove_proxy(self, proxy):
+        if proxy in self.proxies:
+            self.proxies.remove(proxy)
+            print('proxy %s removed from proxies list' % proxy)
 
-    def process_spider_output(self, response, result, spider):
-        # Called with the results returned from the Spider, after
-        # it has processed the response.
+    def process_response(self, request, response, spider):
+        cur_proxy = request.meta['proxy']
+        if response.status >= 400:
+            self.stats[cur_proxy] += 1
+        if self.stats[cur_proxy] >= self.max_failed:
+            self.remove_proxy(cur_proxy)
+        return response
 
-        # Must return an iterable of Request, dict or Item objects.
-        for i in result:
-            yield i
+    def process_exception(self, request, exception, spider):
+        print('raise exception:%s when use %s.' % (exception, request.meta['proxy']))
+        self.remove_proxy(request.meta['proxy'])
 
-    def process_spider_exception(self, response, exception, spider):
-        # Called when a spider or process_spider_input() method
-        # (from other spider middleware) raises an exception.
 
-        # Should return either None or an iterable of Response, dict
-        # or Item objects.
-        pass
 
-    def process_start_requests(self, start_requests, spider):
-        # Called with the start requests of the spider, and works
-        # similarly to the process_spider_output() method, except
-        # that it doesn’t have a response associated.
 
-        # Must return only requests (not items).
-        for r in start_requests:
-            yield r
 
-    def spider_opened(self, spider):
-        spider.logger.info('Spider opened: %s' % spider.name)
+
+
+
+
+
+
+
