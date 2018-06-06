@@ -1,9 +1,7 @@
 import pickle
 from hashlib import md5
 from django.conf import settings
-from web.models.composer import Composer
-from web.models.copyright import Copyright
-from web.models.post import Post
+from web.models import Composer, Copyright, Post
 from web.helpers import r
 
 

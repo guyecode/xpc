@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.conf import settings
-from web.models.composer import Composer
+from web.models import Composer
 from web.helpers.composer import md5_pwd
 need_login = ['/']
 

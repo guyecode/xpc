@@ -6,8 +6,7 @@ from django.conf import settings
 from django.core.cache import cache
 from web.helpers.code import gen_code, verify
 from web.helpers.tasks import send_sms_code
-from web.models.composer import Composer
-from web.models.code import Code
+from web.models import Composer, Code
 from web.helpers.composer import get_posts_by_cid, md5_pwd
 
 

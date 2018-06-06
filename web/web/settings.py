@@ -52,13 +52,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'web.middlewares.auth.AuthMiddleware',
+    # 'web.middlewares.auth.AuthMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 # CACHE_MIDDLEWARE_ALIAS = 'default'
 # CACHE_MIDDLEWARE_SECONDS = 60
 # CACHE_MIDDLEWARE_KEY_PREFIX = 'xpc'
+# REDIS_HOST = '127.0.0.1'
 
 ROOT_URLCONF = 'web.urls'
 

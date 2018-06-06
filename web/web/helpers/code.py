@@ -1,6 +1,6 @@
 import random
 from datetime import datetime
-from web.models.code import Code
+from web.models import Code
 
 CODE_EXPIRE_SECONDS = 60 * 10
 
