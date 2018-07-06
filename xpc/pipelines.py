@@ -24,7 +24,7 @@ class MysqlPipeline(object):
             port=3306,
             user='root',
             password='',
-            db='xpc1704',
+            db='xpc',
             charset='utf8mb4'
         )
         self.cur = self.conn.cursor()

@@ -5,67 +5,74 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 import random
+import redis
 from scrapy.exceptions import NotConfigured
 
 
 class RandomProxyMiddleware(object):
-    """随机动态IP代理池"""
+    """
+    利用scrapy本身的proxy middle机制，实现一个随机IP代理池，并且可以动态的删除有问题的IP
+    """
 
     def __init__(self, settings):
-        # 2. 判断是否配置了IP代理池
-        if not settings.getlist('PROXIES'):
-            raise NotConfigured
-        # 从配置里读取出来
-        self.proxies = settings.getlist('PROXIES')
-        # 设置代理IP的错误统计，默认设置为0
-        self.stats = {}.fromkeys(self.proxies, 0)
+        # 2. 初始化中间件对象
+        # 初始化redis
+        self.redis = redis.Redis(host='127.0.0.1')
+        self.redis_key = 'discovery:proxies'
+
+        # 所有的代理,list类型
+        # self.proxies = settings.getlist('PROXIES')
+        # 所有的代理的失败次数统计
+        self.stats_redis_key = 'discovery:proxies_stats'
+        # 所有问题的代理放到一个list中
+        self.failed_proxy_key = 'discovery:failed_proxies'
         # 最大失败次数
         self.max_failed = 3
 
     @classmethod
     def from_crawler(cls, crawler):
-        # 1. 首先判断是否启用了proxy
+        # 1. 判断是否打开了代理，并且创建中间件对象
         if not crawler.settings.getbool('HTTPPROXY_ENABLED'):
             raise NotConfigured
-        # 创建中间件对象
         return cls(crawler.settings)
 
     def process_request(self, request, spider):
-        # 3. 随机设置一个代理
-        # 通过设置meta内的proxy属性，利用系统本身的proxy中间件去实现代理
-        if 'proxy' not in request.meta:
-            proxy_url = random.choice(self.proxies)
-            request.meta['proxy'] = proxy_url
-
-    def remove_proxy(self, proxy):
-        if proxy in self.proxies:
-            self.proxies.remove(proxy)
-            print('proxy %s removed from proxies list' % proxy)
+        # 3. 设置随机代理IP
+        cur_proxy, = self.redis.srandmember(self.redis_key, 1)
+        cur_proxy = cur_proxy.decode('utf-8')
+        request.meta['proxy'] = cur_proxy
+        print('use proxy: %s' % cur_proxy)
 
     def process_response(self, request, response, spider):
-        # 4. 代理正常，但对方服务器返回了错误的状态码，有可能是被封掉
+        # 4. 处理非正常的http返回码
         cur_proxy = request.meta['proxy']
-        if response.status != 200:
-            print('none 200 status code: %s when use %s'
-                  % (response.status, cur_proxy))
+        # 如果状态码大于400，我们认为可能是被对方封掉了
         if response.status >= 400:
-            self.stats[cur_proxy] += 1
-        # 如果异常status在该代理上出现了N次，也从代理池中删除
-        if self.stats[cur_proxy] >= self.max_failed:
+            self.redis.hincrby(self.stats_redis_key, cur_proxy, 1)
+            print('get http status %s when use proxy: %s' % \
+                  (response.status, cur_proxy))
+
+        # 如果返回400以上状态码的次数超过最大失败次数，则将该IP从代理池中删除
+        failed_times = self.redis.hget(self.stats_redis_key, cur_proxy) or 0
+        if int(failed_times) >= self.max_failed:
             self.remove_proxy(cur_proxy)
-            # 删除当前request对象的代理，并返回重新调度下载
-            del request.meta['proxy']
-            return request
-        # 如果一切正常，返回response对象，以让下面的中间件继续执行。
+        # 记得返回response对象
         return response
 
     def process_exception(self, request, exception, spider):
-        # 4. 如果代理不可用，则会触发此方法
+        # 4. 处理请求过程中发和异常的情况
+        # 通常是代理服务器本身挂掉了，或者网络原因
         cur_proxy = request.meta['proxy']
-        # print一下异常信息
-        print('raise exception: %s when use %s' % (exception, cur_proxy))
-        # 从代理池中删除该代理
+        print('raise exption: %s when use %s' % (exception, cur_proxy))
+        # 直接从代理池中删除
         self.remove_proxy(cur_proxy)
-        # 删除当前request对象的代理，并返回重新调度下载
+        # 将IP从当前的request对象中删除
         del request.meta['proxy']
+        # 从新安排该request调度下载
         return request
+
+    def remove_proxy(self, proxy):
+        # 从代理池中删除某个IP
+        self.redis.srem(self.redis_key, proxy)
+        print('proxy %s removed from proxies list' % proxy)
+        self.redis.lpush(self.failed_proxy_key, proxy)

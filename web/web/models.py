@@ -10,7 +10,7 @@ import pickle
 from django.db import models
 from django.core.cache import cache
 import redis
-r = redis.Redis()
+r = redis.Redis(host='127.0.0.1')
 
 
 class Model(object):
